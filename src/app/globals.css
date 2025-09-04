@@ -72,10 +72,14 @@ body {
 }
 
 .hexagon-bg {
-  background-color: hsl(var(--background));
+  background-color: hsl(var(--primary) / 0.8);
   background-image:
-    radial-gradient(circle at center, hsl(var(--primary) / 0.1) 0%, transparent 40%),
-    linear-gradient(45deg, transparent 33.33%, hsl(var(--border)/0.2) 33.33%, hsl(var(--border)/0.2) 66.67%, transparent 66.67%),
-    linear-gradient(-45deg, transparent 33.33%, hsl(var(--border)/0.2) 33.33%, hsl(var(--border)/0.2) 66.67%, transparent 66.67%);
-  background-size: 40px 70px, 20px 20px, 20px 20px;
+    linear-gradient(30deg, hsl(var(--primary) / 0.9) 12%, transparent 12.5%, transparent 87%, hsl(var(--primary) / 0.9) 87.5%, hsl(var(--primary) / 0.9)),
+    linear-gradient(150deg, hsl(var(--primary) / 0.9) 12%, transparent 12.5%, transparent 87%, hsl(var(--primary) / 0.9) 87.5%, hsl(var(--primary) / 0.9)),
+    linear-gradient(30deg, hsl(var(--primary) / 0.9) 12%, transparent 12.5%, transparent 87%, hsl(var(--primary) / 0.9) 87.5%, hsl(var(--primary) / 0.9)),
+    linear-gradient(150deg, hsl(var(--primary) / 0.9) 12%, transparent 12.5%, transparent 87%, hsl(var(--primary) / 0.9) 87.5%, hsl(var(--primary) / 0.9)),
+    linear-gradient(60deg, hsl(var(--accent)) 25%, transparent 25.5%, transparent 75%, hsl(var(--accent)) 75%, hsl(var(--accent))),
+    linear-gradient(60deg, hsl(var(--accent)) 25%, transparent 25.5%, transparent 75%, hsl(var(--accent)) 75%, hsl(var(--accent)));
+  background-size: 80px 140px;
+  background-position: 0 0, 0 0, 40px 70px, 40px 70px, 0 0, 40px 70px;
 }
