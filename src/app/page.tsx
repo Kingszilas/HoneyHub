@@ -1,3 +1,5 @@
+"use client";
+
 import Image from 'next/image';
 import Link from 'next/link';
 import {
@@ -12,8 +14,10 @@ import { Button } from '@/components/ui/button';
 import { ArrowRight, Leaf, Star, Sprout, Wind } from 'lucide-react';
 import { RecipeSuggestions } from '@/components/recipe-suggestions';
 import { blogPosts, products } from '@/lib/data';
+import { useLanguage } from '@/contexts/language-context';
 
 export default function Home() {
+  const { t } = useLanguage();
   const featuredProducts = products.slice(0, 3);
   const featuredPosts = blogPosts.slice(0, 2);
 
@@ -22,17 +26,18 @@ export default function Home() {
       <section
         className="relative w-full h-[60vh] md:h-[80vh] bg-cover bg-center flex items-center justify-center"
         style={{ backgroundImage: "url('https://picsum.photos/1600/900')" }}
+        data-ai-hint="honeycomb nature"
       >
         <div className="absolute inset-0 bg-black/50" />
         <div className="relative z-10 text-center text-white px-4">
           <h1 className="font-headline text-4xl md:text-7xl font-bold drop-shadow-lg">
-            Pure, Golden, Unforgettable.
+            {t('home.hero.title')}
           </h1>
           <p className="mt-4 text-lg md:text-2xl max-w-2xl mx-auto">
-            Discover the finest, purest honey from around the world, delivered straight to your door.
+            {t('home.hero.subtitle')}
           </p>
           <Button asChild size="lg" className="mt-8 bg-primary hover:bg-primary/90 text-primary-foreground font-bold">
-            <Link href="/#products">Shop Now</Link>
+            <Link href="/#products">{t('home.hero.shopNow')}</Link>
           </Button>
         </div>
       </section>
@@ -40,7 +45,7 @@ export default function Home() {
       <section id="products" className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
           <h2 className="font-headline text-3xl md:text-4xl font-bold text-center mb-12">
-            Our Featured Honey
+            {t('home.featuredProducts.title')}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {featuredProducts.map((product) => (
@@ -62,19 +67,19 @@ export default function Home() {
                     {[...Array(5)].map((_, i) => (
                       <Star key={i} className={`h-5 w-5 ${i < product.rating ? 'text-primary' : 'text-muted'}`} fill="currentColor" />
                     ))}
-                    <span className="ml-2 text-sm text-muted-foreground">({product.reviewCount} reviews)</span>
+                    <span className="ml-2 text-sm text-muted-foreground">({product.reviewCount} {t('home.featuredProducts.reviews')})</span>
                   </div>
                 </CardContent>
                 <CardFooter className="p-6 pt-0 flex justify-between items-center">
                   <p className="text-2xl font-bold text-foreground">${product.price.toFixed(2)}</p>
-                  <Button>Add to Cart</Button>
+                  <Button>{t('home.featuredProducts.addToCart')}</Button>
                 </CardFooter>
               </Card>
             ))}
           </div>
           <div className="text-center mt-12">
             <Button asChild variant="outline">
-              <Link href="/products">View All Products <ArrowRight className="ml-2 h-4 w-4" /></Link>
+              <Link href="/products">{t('home.featuredProducts.viewAll')} <ArrowRight className="ml-2 h-4 w-4" /></Link>
             </Button>
           </div>
         </div>
@@ -83,29 +88,29 @@ export default function Home() {
       <section className="py-16 md:py-24 bg-card">
         <div className="container mx-auto px-4">
           <h2 className="font-headline text-3xl md:text-4xl font-bold text-center mb-12">
-            Why Choose HoneyHub?
+            {t('home.whyChoose.title')}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
             <div className="p-4">
               <div className="flex items-center justify-center h-16 w-16 rounded-full bg-primary/20 mx-auto mb-4">
                 <Leaf className="h-8 w-8 text-primary" />
               </div>
-              <h3 className="font-headline text-xl font-bold mb-2">100% Natural</h3>
-              <p className="text-muted-foreground">Our honey is raw, unfiltered, and free from any additives.</p>
+              <h3 className="font-headline text-xl font-bold mb-2">{t('home.whyChoose.naturalTitle')}</h3>
+              <p className="text-muted-foreground">{t('home.whyChoose.naturalText')}</p>
             </div>
             <div className="p-4">
               <div className="flex items-center justify-center h-16 w-16 rounded-full bg-primary/20 mx-auto mb-4">
                 <Sprout className="h-8 w-8 text-primary" />
               </div>
-              <h3 className="font-headline text-xl font-bold mb-2">Sustainably Sourced</h3>
-              <p className="text-muted-foreground">We partner with beekeepers who prioritize bee health and environmental sustainability.</p>
+              <h3 className="font-headline text-xl font-bold mb-2">{t('home.whyChoose.sustainableTitle')}</h3>
+              <p className="text-muted-foreground">{t('home.whyChoose.sustainableText')}</p>
             </div>
             <div className="p-4">
               <div className="flex items-center justify-center h-16 w-16 rounded-full bg-primary/20 mx-auto mb-4">
                 <Wind className="h-8 w-8 text-primary" />
               </div>
-              <h3 className="font-headline text-xl font-bold mb-2">Exquisite Flavors</h3>
-              <p className="text-muted-foreground">From Clover to Manuka, explore a world of unique and delicious tastes.</p>
+              <h3 className="font-headline text-xl font-bold mb-2">{t('home.whyChoose.flavorsTitle')}</h3>
+              <p className="text-muted-foreground">{t('home.whyChoose.flavorsText')}</p>
             </div>
           </div>
         </div>
@@ -118,7 +123,7 @@ export default function Home() {
       <section className="py-16 md:py-24 bg-card">
         <div className="container mx-auto px-4">
           <h2 className="font-headline text-3xl md:text-4xl font-bold text-center mb-12">
-            From The Hive Blog
+            {t('home.fromTheBlog.title')}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             {featuredPosts.map((post) => (
@@ -134,14 +139,14 @@ export default function Home() {
                 <h3 className="font-headline text-2xl font-bold mt-6 mb-2">{post.title}</h3>
                 <p className="text-muted-foreground mb-4">{post.excerpt}</p>
                 <Button asChild variant="link" className="p-0 text-primary">
-                  <Link href={`/blog#${post.id}`}>Read More <ArrowRight className="ml-2 h-4 w-4" /></Link>
+                  <Link href={`/blog#${post.id}`}>{t('home.fromTheBlog.readMore')} <ArrowRight className="ml-2 h-4 w-4" /></Link>
                 </Button>
               </div>
             ))}
           </div>
            <div className="text-center mt-12">
             <Button asChild variant="outline">
-              <Link href="/blog">Visit The Blog <ArrowRight className="ml-2 h-4 w-4" /></Link>
+              <Link href="/blog">{t('home.fromTheBlog.visitBlog')} <ArrowRight className="ml-2 h-4 w-4" /></Link>
             </Button>
           </div>
         </div>

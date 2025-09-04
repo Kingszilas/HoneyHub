@@ -1,0 +1,88 @@
+{
+  "header": {
+    "products": "Products",
+    "recipes": "Recipes",
+    "blog": "Blog",
+    "contact": "Contact"
+  },
+  "footer": {
+    "subtitle": "Pure, Golden, Unforgettable.",
+    "shop": "Shop",
+    "allProducts": "All Products",
+    "wildflowerHoney": "Wildflower Honey",
+    "cloverHoney": "Clover Honey",
+    "manukaHoney": "Manuka Honey",
+    "explore": "Explore",
+    "blog": "Blog",
+    "recipes": "Recipes",
+    "aboutUs": "About Us",
+    "support": "Support",
+    "contactUs": "Contact Us",
+    "faqs": "FAQs",
+    "shippingReturns": "Shipping & Returns",
+    "copyright": "HoneyHub. All rights reserved."
+  },
+  "home": {
+    "hero": {
+      "title": "Pure, Golden, Unforgettable.",
+      "subtitle": "Discover the finest, purest honey from around the world, delivered straight to your door.",
+      "shopNow": "Shop Now"
+    },
+    "featuredProducts": {
+      "title": "Our Featured Honey",
+      "reviews": "reviews",
+      "addToCart": "Add to Cart",
+      "viewAll": "View All Products"
+    },
+    "whyChoose": {
+      "title": "Why Choose HoneyHub?",
+      "naturalTitle": "100% Natural",
+      "naturalText": "Our honey is raw, unfiltered, and free from any additives.",
+      "sustainableTitle": "Sustainably Sourced",
+      "sustainableText": "We partner with beekeepers who prioritize bee health and environmental sustainability.",
+      "flavorsTitle": "Exquisite Flavors",
+      "flavorsText": "From Clover to Manuka, explore a world of unique and delicious tastes."
+    },
+    "recipeSuggestions": {
+      "title": "AI Recipe Suggestions",
+      "description": "Select a honey type and let our AI chef suggest delicious recipes for you.",
+      "honeyTypeLabel": "Type of Honey",
+      "honeyTypePlaceholder": "Select a honey",
+      "preferencesLabel": "Dietary Preferences (Optional)",
+      "preferencesPlaceholder": "e.g., vegetarian, gluten-free, quick and easy",
+      "getRecipes": "Get Recipes",
+      "generating": "Generating...",
+      "suggestionsTitle": "Your delicious suggestions:",
+      "ingredients": "Ingredients",
+      "instructions": "Instructions",
+      "placeholderTitle": "Recipes will appear here",
+      "placeholderText": "Fill out the form to the left to get started and discover your next favorite meal."
+    },
+    "fromTheBlog": {
+      "title": "From The Hive Blog",
+      "readMore": "Read More",
+      "visitBlog": "Visit The Blog"
+    }
+  },
+  "blog": {
+    "title": "The Hive Blog",
+    "subtitle": "Sweet stories, healthy recipes, and the latest buzz from the world of honey.",
+    "readMore": "Read More"
+  },
+  "contact": {
+    "title": "Get in Touch",
+    "subtitle": "Have a question or a comment? Drop us a line, we'd love to hear from you.",
+    "formTitle": "Contact Us",
+    "nameLabel": "Full Name",
+    "namePlaceholder": "John Doe",
+    "emailLabel": "Email Address",
+    "emailPlaceholder": "you@example.com",
+    "messageLabel": "Your Message",
+    "messagePlaceholder": "Tell us how we can help...",
+    "sendMessage": "Send Message",
+    "emailUsTitle": "Email Us",
+    "emailUsText": "Send us an email for any inquiry.",
+    "callUsTitle": "Call Us",
+    "callUsText": "Our team is available Mon-Fri, 9am-5pm."
+  }
+}

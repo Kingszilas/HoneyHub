@@ -1,0 +1,88 @@
+{
+  "header": {
+    "products": "Termékek",
+    "recipes": "Receptek",
+    "blog": "Blog",
+    "contact": "Kapcsolat"
+  },
+  "footer": {
+    "subtitle": "Tiszta, Arany, Felejthetetlen.",
+    "shop": "Vásárlás",
+    "allProducts": "Összes termék",
+    "wildflowerHoney": "Vegyes virágméz",
+    "cloverHoney": "Lóhereméz",
+    "manukaHoney": "Manuka méz",
+    "explore": "Felfedezés",
+    "blog": "Blog",
+    "recipes": "Receptek",
+    "aboutUs": "Rólunk",
+    "support": "Támogatás",
+    "contactUs": "Kapcsolat",
+    "faqs": "GYIK",
+    "shippingReturns": "Szállítás és Visszaküldés",
+    "copyright": "HoneyHub. Minden jog fenntartva."
+  },
+  "home": {
+    "hero": {
+      "title": "Tiszta, Arany, Felejthetetlen.",
+      "subtitle": "Fedezze fel a világ legfinomabb, legtisztább mézeit, egyenesen az ajtajához szállítva.",
+      "shopNow": "Vásárlás most"
+    },
+    "featuredProducts": {
+      "title": "Kiemelt mézeink",
+      "reviews": "értékelés",
+      "addToCart": "Kosárba",
+      "viewAll": "Összes termék megtekintése"
+    },
+    "whyChoose": {
+      "title": "Miért válassza a HoneyHubot?",
+      "naturalTitle": "100% Természetes",
+      "naturalText": "Mézünk nyers, szűretlen és mindenféle adalékanyagtól mentes.",
+      "sustainableTitle": "Fenntartható forrásból",
+      "sustainableText": "Olyan méhészekkel dolgozunk együtt, akik előtérbe helyezik a méhek egészségét és a környezeti fenntarthatóságot.",
+      "flavorsTitle": "Különleges ízek",
+      "flavorsText": "A lóherétől a manukáig fedezze fel az egyedi és finom ízek világát."
+    },
+    "recipeSuggestions": {
+      "title": "MI Receptajánló",
+      "description": "Válasszon egy mézfajtát, és hagyja, hogy MI séfünk finom recepteket javasoljon Önnek.",
+      "honeyTypeLabel": "Méz típusa",
+      "honeyTypePlaceholder": "Válasszon egy mézet",
+      "preferencesLabel": "Étrendi preferenciák (opcionális)",
+      "preferencesPlaceholder": "pl. vegetáriánus, gluténmentes, gyors és egyszerű",
+      "getRecipes": "Receptek kérése",
+      "generating": "Generálás...",
+      "suggestionsTitle": "Az Ön finom ajánlatai:",
+      "ingredients": "Hozzávalók",
+      "instructions": "Elkészítés",
+      "placeholderTitle": "A receptek itt fognak megjelenni",
+      "placeholderText": "Töltse ki a bal oldali űrlapot a kezdéshez, és fedezze fel a következő kedvenc ételét."
+    },
+    "fromTheBlog": {
+      "title": "A Kaptár Blogból",
+      "readMore": "Tovább olvasom",
+      "visitBlog": "Látogasson el a Blogra"
+    }
+  },
+  "blog": {
+    "title": "A Kaptár Blog",
+    "subtitle": "Édes történetek, egészséges receptek és a legfrissebb zümmögés a méz világából.",
+    "readMore": "Tovább olvasom"
+  },
+  "contact": {
+    "title": "Lépjen kapcsolatba velünk",
+    "subtitle": "Kérdése vagy megjegyzése van? Írjon nekünk, örömmel hallanánk Önről.",
+    "formTitle": "Kapcsolatfelvétel",
+    "nameLabel": "Teljes név",
+    "namePlaceholder": "Minta János",
+    "emailLabel": "E-mail cím",
+    "emailPlaceholder": "on@pelda.com",
+    "messageLabel": "Az Ön üzenete",
+    "messagePlaceholder": "Mondja el, hogyan segíthetünk...",
+    "sendMessage": "Üzenet küldése",
+    "emailUsTitle": "Írjon nekünk e-mailt",
+    "emailUsText": "Bármilyen kérdéssel kapcsolatban küldjön nekünk e-mailt.",
+    "callUsTitle": "Hívjon minket",
+    "callUsText": "Csapatunk hétfőtől péntekig, 9-től 17 óráig elérhető."
+  }
+}

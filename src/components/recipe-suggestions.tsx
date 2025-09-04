@@ -30,19 +30,21 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { useLanguage } from "@/contexts/language-context";
 
 
 function SubmitButton() {
   const { pending } = useFormStatus();
+  const { t } = useLanguage();
   return (
     <Button type="submit" disabled={pending} className="w-full">
       {pending ? (
         <>
           <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-          Generating...
+          {t('home.recipeSuggestions.generating')}
         </>
       ) : (
-        "Get Recipes"
+        t('home.recipeSuggestions.getRecipes')
       )}
     </Button>
   );
@@ -50,6 +52,7 @@ function SubmitButton() {
 
 export function RecipeSuggestions() {
   const { toast } = useToast();
+  const { t } = useLanguage();
   const formRef = useRef<HTMLFormElement>(null);
   
   const initialState: RecipeState = {};
@@ -76,19 +79,19 @@ export function RecipeSuggestions() {
             <CardHeader>
               <CardTitle className="font-headline text-2xl flex items-center gap-2">
                 <ChefHat className="h-6 w-6 text-primary" />
-                AI Recipe Suggestions
+                {t('home.recipeSuggestions.title')}
               </CardTitle>
               <CardDescription>
-                Select a honey type and let our AI chef suggest delicious recipes for you.
+                {t('home.recipeSuggestions.description')}
               </CardDescription>
             </CardHeader>
             <form action={dispatch} ref={formRef}>
               <CardContent className="space-y-4">
                 <div>
-                  <Label htmlFor="honeyType">Type of Honey</Label>
+                  <Label htmlFor="honeyType">{t('home.recipeSuggestions.honeyTypeLabel')}</Label>
                   <Select name="honeyType" required>
                     <SelectTrigger id="honeyType">
-                      <SelectValue placeholder="Select a honey" />
+                      <SelectValue placeholder={t('home.recipeSuggestions.honeyTypePlaceholder')} />
                     </SelectTrigger>
                     <SelectContent>
                       {products.map((product) => (
@@ -100,11 +103,11 @@ export function RecipeSuggestions() {
                   </Select>
                 </div>
                 <div>
-                  <Label htmlFor="userPreferences">Dietary Preferences (Optional)</Label>
+                  <Label htmlFor="userPreferences">{t('home.recipeSuggestions.preferencesLabel')}</Label>
                   <Textarea
                     id="userPreferences"
                     name="userPreferences"
-                    placeholder="e.g., vegetarian, gluten-free, quick and easy"
+                    placeholder={t('home.recipeSuggestions.preferencesPlaceholder')}
                   />
                 </div>
               </CardContent>
@@ -117,7 +120,7 @@ export function RecipeSuggestions() {
         <div className="lg:col-span-2">
           {state?.recipes ? (
             <div className="space-y-6">
-              <h3 className="font-headline text-3xl font-bold">Your delicious suggestions:</h3>
+              <h3 className="font-headline text-3xl font-bold">{t('home.recipeSuggestions.suggestionsTitle')}</h3>
               {state.recipes.map((recipe, index) => (
                 <Card key={index} className="overflow-hidden">
                   <CardHeader>
@@ -126,7 +129,7 @@ export function RecipeSuggestions() {
                   <CardContent>
                     <Accordion type="single" collapsible className="w-full">
                       <AccordionItem value="ingredients">
-                        <AccordionTrigger>Ingredients</AccordionTrigger>
+                        <AccordionTrigger>{t('home.recipeSuggestions.ingredients')}</AccordionTrigger>
                         <AccordionContent>
                           <div className="prose prose-sm max-w-none whitespace-pre-line">
                             {recipe.ingredients}
@@ -134,7 +137,7 @@ export function RecipeSuggestions() {
                         </AccordionContent>
                       </AccordionItem>
                       <AccordionItem value="instructions">
-                        <AccordionTrigger>Instructions</AccordionTrigger>
+                        <AccordionTrigger>{t('home.recipeSuggestions.instructions')}</AccordionTrigger>
                         <AccordionContent>
                           <div className="prose prose-sm max-w-none whitespace-pre-line">
                             {recipe.instructions}
@@ -149,9 +152,9 @@ export function RecipeSuggestions() {
           ) : (
             <div className="flex flex-col items-center justify-center text-center bg-card p-12 rounded-lg h-full min-h-[400px]">
               <ChefHat className="h-16 w-16 text-muted-foreground/50 mb-4" />
-              <h3 className="font-headline text-2xl font-bold">Recipes will appear here</h3>
+              <h3 className="font-headline text-2xl font-bold">{t('home.recipeSuggestions.placeholderTitle')}</h3>
               <p className="text-muted-foreground mt-2 max-w-sm">
-                Fill out the form to the left to get started and discover your next favorite meal.
+                {t('home.recipeSuggestions.placeholderText')}
               </p>
             </div>
           )}
