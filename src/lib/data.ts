@@ -3,39 +3,66 @@ import type { Product, BlogPost } from './types';
 export const products: Product[] = [
   {
     id: 1,
-    name: 'Wildflower Honey',
-    description: 'A delightful multi-floral honey with a rich, sweet flavor from a variety of wildflowers.',
-    price: 12.99,
+    name: {
+      en: 'Wildflower Honey',
+      hu: 'Vegyes virágméz'
+    },
+    description: {
+        en: 'A delightful multi-floral honey with a rich, sweet flavor from a variety of wildflowers.',
+        hu: 'Kellemes, többvirágú méz, gazdag, édes ízzel, különféle vadvirágokból.'
+    },
+    price: {
+        en: 12.99,
+        hu: 2500
+    },
     image: 'https://picsum.photos/600/400?random=1',
     rating: 5,
     reviewCount: 124,
   },
   {
     id: 2,
-    name: 'Clover Honey',
-    description: 'A classic, mild, and light-colored honey. Perfect for sweetening tea or spreading on toast.',
-    price: 9.99,
+    name: {
+      en: 'Acacia Honey',
+      hu: 'Akácméz'
+    },
+    description: {
+        en: 'A very light and clear honey with a delicate, floral taste that is slow to crystallize.',
+        hu: 'Nagyon világos és tiszta méz, finom, virágos ízzel, amely lassan kristályosodik.'
+    },
+    price: {
+        en: 15.99,
+        hu: 3000
+    },
+    image: 'https://picsum.photos/600/400?random=4',
+    rating: 4,
+    reviewCount: 76,
+  },
+  {
+    id: 3,
+    name: {
+      en: 'Canola Honey',
+      hu: 'Repceméz'
+    },
+    description: {
+        en: 'A classic, mild, and light-colored honey. Perfect for sweetening tea or spreading on toast.',
+        hu: 'Klasszikus, enyhe és világos színű méz. Tökéletes tea édesítésére vagy pirítósra kenve.'
+    },
+    price: {
+        en: 9.99,
+        hu: 2000
+    },
     image: 'https://picsum.photos/600/400?random=2',
     rating: 4,
     reviewCount: 98,
   },
   {
-    id: 3,
+    id: 4,
     name: 'Manuka Honey',
     description: 'A premium honey from New Zealand known for its unique, strong flavor and beneficial properties.',
     price: 39.99,
     image: 'https://picsum.photos/600/400?random=3',
     rating: 5,
     reviewCount: 210,
-  },
-  {
-    id: 4,
-    name: 'Acacia Honey',
-    description: 'A very light and clear honey with a delicate, floral taste that is slow to crystallize.',
-    price: 15.99,
-    image: 'https://picsum.photos/600/400?random=4',
-    rating: 4,
-    reviewCount: 76,
   },
   {
     id: 5,

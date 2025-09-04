@@ -17,9 +17,24 @@ import { blogPosts, products } from '@/lib/data';
 import { useLanguage } from '@/contexts/language-context';
 
 export default function Home() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const featuredProducts = products.slice(0, 3);
   const featuredPosts = blogPosts.slice(0, 2);
+
+  const getProductLocale = (product: (typeof products)[0], field: 'name' | 'description' | 'price') => {
+    const value = product[field];
+    if (typeof value === 'object') {
+      return value[language] ?? value['en'];
+    }
+    return value;
+  };
+  
+  const formatPrice = (price: number) => {
+    if (language === 'hu') {
+      return `${price.toLocaleString('hu-HU')} Ft`;
+    }
+    return `$${price.toFixed(2)}`;
+  };
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -53,7 +68,7 @@ export default function Home() {
                 <CardHeader className="p-0">
                   <Image
                     src={product.image}
-                    alt={product.name}
+                    alt={getProductLocale(product, 'name') as string}
                     width={600}
                     height={400}
                     className="w-full h-48 object-cover"
@@ -61,8 +76,8 @@ export default function Home() {
                   />
                 </CardHeader>
                 <CardContent className="p-6 flex-grow">
-                  <CardTitle className="font-headline text-xl">{product.name}</CardTitle>
-                  <CardDescription className="mt-2">{product.description}</CardDescription>
+                  <CardTitle className="font-headline text-xl">{getProductLocale(product, 'name')}</CardTitle>
+                  <CardDescription className="mt-2">{getProductLocale(product, 'description')}</CardDescription>
                   <div className="flex items-center mt-4">
                     {[...Array(5)].map((_, i) => (
                       <Star key={i} className={`h-5 w-5 ${i < product.rating ? 'text-primary' : 'text-muted'}`} fill="currentColor" />
@@ -71,7 +86,7 @@ export default function Home() {
                   </div>
                 </CardContent>
                 <CardFooter className="p-6 pt-0 flex justify-between items-center">
-                  <p className="text-2xl font-bold text-foreground">${product.price.toFixed(2)}</p>
+                  <p className="text-2xl font-bold text-foreground">{formatPrice(getProductLocale(product, 'price') as number)}</p>
                   <Button>{t('home.featuredProducts.addToCart')}</Button>
                 </CardFooter>
               </Card>

@@ -52,7 +52,7 @@ function SubmitButton() {
 
 export function RecipeSuggestions() {
   const { toast } = useToast();
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const formRef = useRef<HTMLFormElement>(null);
   
   const initialState: RecipeState = {};
@@ -70,6 +70,13 @@ export function RecipeSuggestions() {
       formRef.current?.reset();
     }
   }, [state, toast]);
+  
+  const getProductName = (product: (typeof products)[0]) => {
+    if (typeof product.name === 'object') {
+      return product.name[language] ?? product.name['en'];
+    }
+    return product.name;
+  };
 
   return (
     <div className="container mx-auto px-4">
@@ -95,8 +102,8 @@ export function RecipeSuggestions() {
                     </SelectTrigger>
                     <SelectContent>
                       {products.map((product) => (
-                        <SelectItem key={product.id} value={product.name}>
-                          {product.name}
+                        <SelectItem key={product.id} value={getProductName(product)}>
+                          {getProductName(product)}
                         </SelectItem>
                       ))}
                     </SelectContent>

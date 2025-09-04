@@ -1,8 +1,8 @@
 export interface Product {
   id: number;
-  name: string;
-  description: string;
-  price: number;
+  name: string | { [key: string]: string };
+  description: string | { [key: string]: string };
+  price: number | { [key: string]: number };
   image: string;
   rating: number;
   reviewCount: number;

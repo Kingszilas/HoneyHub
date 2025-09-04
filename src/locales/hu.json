@@ -10,8 +10,8 @@
     "shop": "Vásárlás",
     "allProducts": "Összes termék",
     "wildflowerHoney": "Vegyes virágméz",
-    "cloverHoney": "Lóhereméz",
-    "manukaHoney": "Manuka méz",
+    "acaciaHoney": "Akác méz",
+    "canolaHoney": "Repce méz",
     "explore": "Felfedezés",
     "blog": "Blog",
     "recipes": "Receptek",
@@ -20,7 +20,7 @@
     "contactUs": "Kapcsolat",
     "faqs": "GYIK",
     "shippingReturns": "Szállítás és Visszaküldés",
-    "copyright": "HoneyHub. Minden jog fenntartva."
+    "copyright": "Vitézméz. Minden jog fenntartva."
   },
   "home": {
     "hero": {
@@ -35,13 +35,13 @@
       "viewAll": "Összes termék megtekintése"
     },
     "whyChoose": {
-      "title": "Miért válassza a HoneyHubot?",
+      "title": "Miért válassza a Vitézmézet?",
       "naturalTitle": "100% Természetes",
       "naturalText": "Mézünk nyers, szűretlen és mindenféle adalékanyagtól mentes.",
       "sustainableTitle": "Fenntartható forrásból",
-      "sustainableText": "Olyan méhészekkel dolgozunk együtt, akik előtérbe helyezik a méhek egészségét és a környezeti fenntarthatóságot.",
+      "sustainableText": "Mi előtérbe helyezzük a méhek egészségét és a környezeti fenntarthatóságot.",
       "flavorsTitle": "Különleges ízek",
-      "flavorsText": "A lóherétől a manukáig fedezze fel az egyedi és finom ízek világát."
+      "flavorsText": "Fedezze fel az egyedi és finom ízek világát."
     },
     "recipeSuggestions": {
       "title": "MI Receptajánló",
