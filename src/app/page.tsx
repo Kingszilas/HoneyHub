@@ -41,7 +41,7 @@ export default function Home() {
       <section
         className="relative w-full h-[60vh] md:h-[80vh] bg-cover bg-center flex items-center justify-center"
         style={{ backgroundImage: "url('https://picsum.photos/1600/900')" }}
-        data-ai-hint="honeycomb nature"
+        data-ai-hint="honeycomb honey"
       >
         <div className="absolute inset-0 bg-black/50" />
         <div className="relative z-10 text-center text-white px-4">
