@@ -57,7 +57,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="products" className="py-16 md:py-24 bg-background">
+      <section id="products" className="py-16 md:py-24 bg-background hexagon-bg">
         <div className="container mx-auto px-4">
           <h2 className="font-headline text-3xl md:text-4xl font-bold text-center mb-12">
             {t('home.featuredProducts.title')}
@@ -131,7 +131,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="recipes" className="py-16 md:py-24 bg-background">
+      <section id="recipes" className="py-16 md:py-24 bg-background hexagon-bg">
         <RecipeSuggestions />
       </section>
 
