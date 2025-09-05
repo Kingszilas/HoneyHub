@@ -30,7 +30,7 @@ export function Header() {
       <div className="container mx-auto flex h-16 max-w-7xl items-center justify-between px-4">
         <Link href="/" className="flex items-center gap-2">
           <BeeIcon className="h-8 w-8 text-primary" />
-          <span className="font-headline text-2xl font-bold">HoneyHub</span>
+          <span className="font-headline text-2xl font-bold">VitézMéz</span>
         </Link>
         <nav className="hidden md:flex items-center gap-4 text-sm font-medium">
           {navLinks.map((link) => (

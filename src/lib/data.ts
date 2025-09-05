@@ -15,9 +15,7 @@ export const products: Product[] = [
         en: 12.99,
         hu: 2500
     },
-    image: 'https://picsum.photos/600/400?random=1',
-    rating: 5,
-    reviewCount: 124,
+    image: '/images/vegyesméz1.jpg',
   },
   {
     id: 2,
@@ -33,9 +31,7 @@ export const products: Product[] = [
         en: 15.99,
         hu: 3000
     },
-    image: 'https://picsum.photos/600/400?random=4',
-    rating: 4,
-    reviewCount: 76,
+    image: '/images/Akácméz1.jpg',
   },
   {
     id: 3,
@@ -51,9 +47,7 @@ export const products: Product[] = [
         en: 9.99,
         hu: 2000
     },
-    image: 'https://picsum.photos/600/400?random=2',
-    rating: 4,
-    reviewCount: 98,
+    image: '/images/Hársméz1.jpg',
   },
   {
     id: 4,
@@ -61,8 +55,7 @@ export const products: Product[] = [
     description: 'A premium honey from New Zealand known for its unique, strong flavor and beneficial properties.',
     price: 39.99,
     image: 'https://picsum.photos/600/400?random=3',
-    rating: 5,
-    reviewCount: 210,
+
   },
   {
     id: 5,
@@ -70,8 +63,7 @@ export const products: Product[] = [
     description: 'A dark, robust honey with a malty, molasses-like flavor. Rich in antioxidants.',
     price: 14.99,
     image: 'https://picsum.photos/600/400?random=5',
-    rating: 5,
-    reviewCount: 88,
+
   },
   {
     id: 6,
@@ -79,8 +71,7 @@ export const products: Product[] = [
     description: 'A fragrant honey with a subtle citrusy aroma and a sweet, fruity flavor.',
     price: 13.99,
     image: 'https://picsum.photos/600/400?random=6',
-    rating: 4,
-    reviewCount: 102,
+
   },
 ];
 

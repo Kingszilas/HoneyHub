@@ -7,7 +7,7 @@ import { Toaster } from "@/components/ui/toaster"
 import { LanguageProvider } from '@/contexts/language-context';
 
 export const metadata: Metadata = {
-  title: 'HoneyHub',
+  title: 'VitézMéz',
   description: 'Discover the finest, purest honey from around the world.',
 };
 

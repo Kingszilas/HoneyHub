@@ -25,8 +25,8 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
     for (const k of keys) {
       result = result?.[k];
       if (result === undefined) {
-        // Fallback to English if translation is missing
-        let fallbackResult: any = translations.en;
+        // Fallback to Hungarian if translation is missing
+        let fallbackResult: any = translations.hu;
         for (const fk of keys) {
           fallbackResult = fallbackResult?.[fk];
         }

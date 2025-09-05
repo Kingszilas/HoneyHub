@@ -14,7 +14,7 @@ export function Footer() {
           <div className="md:col-span-1">
             <Link href="/" className="flex items-center gap-2 mb-4">
               <BeeIcon className="h-8 w-8 text-primary" />
-              <span className="font-headline text-2xl font-bold">HoneyHub</span>
+              <span className="font-headline text-2xl font-bold">VitézMéz</span>
             </Link>
             <p className="text-sm text-muted-foreground">{t('footer.subtitle')}</p>
           </div>

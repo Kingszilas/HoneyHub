@@ -71,15 +71,34 @@ body {
   }
 }
 
-.hexagon-bg {
-  background-color: hsl(var(--primary) / 0.8);
-  background-image:
-    linear-gradient(30deg, hsl(var(--primary) / 0.9) 12%, transparent 12.5%, transparent 87%, hsl(var(--primary) / 0.9) 87.5%, hsl(var(--primary) / 0.9)),
-    linear-gradient(150deg, hsl(var(--primary) / 0.9) 12%, transparent 12.5%, transparent 87%, hsl(var(--primary) / 0.9) 87.5%, hsl(var(--primary) / 0.9)),
-    linear-gradient(30deg, hsl(var(--primary) / 0.9) 12%, transparent 12.5%, transparent 87%, hsl(var(--primary) / 0.9) 87.5%, hsl(var(--primary) / 0.9)),
-    linear-gradient(150deg, hsl(var(--primary) / 0.9) 12%, transparent 12.5%, transparent 87%, hsl(var(--primary) / 0.9) 87.5%, hsl(var(--primary) / 0.9)),
-    linear-gradient(60deg, hsl(var(--accent)) 25%, transparent 25.5%, transparent 75%, hsl(var(--accent)) 75%, hsl(var(--accent))),
-    linear-gradient(60deg, hsl(var(--accent)) 25%, transparent 25.5%, transparent 75%, hsl(var(--accent)) 75%, hsl(var(--accent)));
-  background-size: 80px 140px;
-  background-position: 0 0, 0 0, 40px 70px, 40px 70px, 0 0, 40px 70px;
+
+.bg-honeycomb-realistic {
+  position: relative;
+  background: radial-gradient(circle at 20% 30%, #fff7e0 0%, transparent 60%),
+              radial-gradient(circle at 80% 70%, #ffefc2 0%, transparent 55%),
+              linear-gradient(135deg, #ffda7b 0%, #ffb347 40%, #f7931a 100%);
+  background-blend-mode: overlay;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+
+.bg-honeycomb-realistic2 {
+  background-image: url('/images/pexels-roman-odintsov-6422037.jpg');
+  background-size: cover;      /* a kép kitölti a szekciót */
+  background-position: center;
+  background-repeat: no-repeat;
+    background-color: rgba(255, 248, 240, 0.15); /* csak a kép “lágyítása” */
+  background-blend-mode: lighten; /* vagy overlay, soft-light */
+  position: relative;
+  z-index: 0;
+}
+
+.bg-honeycomb-realistic2::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
 }

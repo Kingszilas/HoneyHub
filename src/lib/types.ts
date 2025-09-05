@@ -4,8 +4,6 @@ export interface Product {
   description: string | { [key: string]: string };
   price: number | { [key: string]: number };
   image: string;
-  rating: number;
-  reviewCount: number;
 }
 
 export interface BlogPost {

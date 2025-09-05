@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
+import Quote from "@/components/Quote";
 import {
   Card,
   CardContent,
@@ -21,6 +22,17 @@ export default function Home() {
   const featuredProducts = products.slice(0, 3);
   const featuredPosts = blogPosts.slice(0, 2);
 
+    const myImages = [
+  "/images/pexels-pixabay-57398.jpg",
+  "/images/pexels-eva-al-1617171197-27907488.jpg",
+  "/images/pexels-katlovessteve-551619.jpg",
+  "/images/pexels-umsiedlungen-1035224.jpg",
+  "/images/pexels-rajsteven-2949743.jpg",
+  "/images/pexels-karolina-grabowska-5478144.jpg",
+];
+
+  const randomImg = myImages[Math.floor(Math.random() * myImages.length)];
+
   const getProductLocale = (product: (typeof products)[0], field: 'name' | 'description' | 'price') => {
     const value = product[field];
     if (typeof value === 'object') {
@@ -36,11 +48,15 @@ export default function Home() {
     return `$${price.toFixed(2)}`;
   };
 
+
+
   return (
     <div className="flex flex-col min-h-screen">
       <section
         className="relative w-full h-[60vh] md:h-[80vh] bg-cover bg-center flex items-center justify-center"
-        style={{ backgroundImage: "url('https://picsum.photos/1600/900')" }}
+         style={{
+    backgroundImage: `url(${randomImg})`,
+  }}
         data-ai-hint="honeycomb honey"
       >
         <div className="absolute inset-0 bg-black/50" />
@@ -56,8 +72,12 @@ export default function Home() {
           </Button>
         </div>
       </section>
+      
+      <section>
+        <Quote lang={language} />
+      </section>
 
-      <section id="products" className="py-16 md:py-24 bg-background hexagon-bg">
+      <section id="products" className="relative py-16 md:py-24 bg-honeycomb-realistic">
         <div className="container mx-auto px-4">
           <h2 className="font-headline text-3xl md:text-4xl font-bold text-center mb-12">
             {t('home.featuredProducts.title')}
@@ -65,24 +85,22 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {featuredProducts.map((product) => (
               <Card key={product.id} className="flex flex-col overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300">
-                <CardHeader className="p-0">
+                <CardHeader className="p-0 relative w-full h-64">
                   <Image
                     src={product.image}
                     alt={getProductLocale(product, 'name') as string}
-                    width={600}
-                    height={400}
-                    className="w-full h-48 object-cover"
-                    data-ai-hint="honey product"
+                    fill
+                    //width={600}     // relative → kötelező, mert a fill absolute pozícióval működik, h-64 → fix magasság, így a kép látható lesz,w-full → teljes szélesség
+                    //height={400}
+                    className='object-cover'
+                    //className="w-full h-48 object-cover"
+                    //data-ai-hint="honey product"
                   />
                 </CardHeader>
                 <CardContent className="p-6 flex-grow">
                   <CardTitle className="font-headline text-xl">{getProductLocale(product, 'name')}</CardTitle>
                   <CardDescription className="mt-2">{getProductLocale(product, 'description')}</CardDescription>
                   <div className="flex items-center mt-4">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className={`h-5 w-5 ${i < product.rating ? 'text-primary' : 'text-muted'}`} fill="currentColor" />
-                    ))}
-                    <span className="ml-2 text-sm text-muted-foreground">({product.reviewCount} {t('home.featuredProducts.reviews')})</span>
                   </div>
                 </CardContent>
                 <CardFooter className="p-6 pt-0 flex justify-between items-center">
@@ -131,7 +149,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="recipes" className="py-16 md:py-24 bg-background hexagon-bg">
+      <section id="recipes" className="relative py-16 md:py-24 bg-honeycomb-realistic2">
         <RecipeSuggestions />
       </section>
 
