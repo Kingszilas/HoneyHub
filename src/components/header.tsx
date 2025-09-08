@@ -2,6 +2,7 @@
 "use client";
 
 import Link from 'next/link';
+import Image from "next/image";
 import { BeeIcon } from './icons/bee-icon';
 import { Button } from './ui/button';
 import { Menu, Globe } from 'lucide-react';
@@ -29,7 +30,12 @@ export function Header() {
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto flex h-16 max-w-7xl items-center justify-between px-4">
         <Link href="/" className="flex items-center gap-2">
-          <BeeIcon className="h-8 w-8 text-primary" />
+          <img 
+                src="/images/logo.png"     
+                alt="VitézMéz" 
+                width={62} 
+                height={62} 
+                className="object-contain" />
           <span className="font-headline text-2xl font-bold">VitézMéz</span>
         </Link>
         <nav className="hidden md:flex items-center gap-4 text-sm font-medium">

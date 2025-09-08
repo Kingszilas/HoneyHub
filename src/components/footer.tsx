@@ -13,7 +13,12 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="md:col-span-1">
             <Link href="/" className="flex items-center gap-2 mb-4">
-              <BeeIcon className="h-8 w-8 text-primary" />
+              <img 
+                src="/images/logo.png"     
+                alt="VitézMéz" 
+                width={62} 
+                height={62} 
+                className="object-contain" />
               <span className="font-headline text-2xl font-bold">VitézMéz</span>
             </Link>
             <p className="text-sm text-muted-foreground">{t('footer.subtitle')}</p>
