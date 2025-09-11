@@ -1,8 +1,10 @@
 "use client";
 
 import Image from 'next/image';
+import React from 'react';
 import Link from 'next/link';
 import Quote from "@/components/Quote";
+import { useFormState } from 'react-dom';
 import {
   Card,
   CardContent,
@@ -31,7 +33,12 @@ export default function Home() {
   "/images/pexels-karolina-grabowska-5478144.jpg",
 ];
 
-  const randomImg = myImages[Math.floor(Math.random() * myImages.length)];
+const [randomImg, setRandomImg] = React.useState(myImages[0]);
+
+React.useEffect(() => {
+  const img = myImages[Math.floor(Math.random() * myImages.length)];
+  setRandomImg(img);
+}, []);
 
   const getProductLocale = (product: (typeof products)[0], field: 'name' | 'description' | 'price') => {
     const value = product[field];

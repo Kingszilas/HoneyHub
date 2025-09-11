@@ -44,19 +44,19 @@
       "flavorsText": "From Clover to Manuka, explore a world of unique and delicious tastes."
     },
     "recipeSuggestions": {
-      "title": "AI Recipe Suggestions",
-      "description": "Select a honey type and let our AI chef suggest delicious recipes for you.",
+      "title": "Recipe Suggestions",
+      "description": "Choose a type of honey and let our AI chef inspire you with tasty, creative recipes.",
       "honeyTypeLabel": "Type of Honey",
       "honeyTypePlaceholder": "Select a honey",
-      "preferencesLabel": "Dietary Preferences (Optional)",
-      "preferencesPlaceholder": "e.g., vegetarian, gluten-free, quick and easy",
-      "getRecipes": "Get Recipes",
-      "generating": "Generating...",
-      "suggestionsTitle": "Your delicious suggestions:",
+      "preferencesLabel": "Dietary habits or preferences (optional)",
+      "preferencesPlaceholder": "e.g., vegetarian, gluten-free, quick & easy",
+      "getRecipes": "Get a Recipe",
+      "generating": "Generating recipe ideas...",
+      "suggestionsTitle": "Here are our suggestions for you:",
       "ingredients": "Ingredients",
       "instructions": "Instructions",
       "placeholderTitle": "Recipes will appear here",
-      "placeholderText": "Fill out the form to the left to get started and discover your next favorite meal."
+      "placeholderText": "Fill out the form on the left to get started and discover your next favorite dish!"
     },
     "fromTheBlog": {
       "title": "From The Hive Blog",
@@ -69,6 +69,13 @@
     "subtitle": "Sweet stories, healthy recipes, and the latest buzz from the world of honey.",
     "readMore": "Read More"
   },
+    "about": {
+  "title": "About Us",
+  "intro": "The story of VitézMéz began more than three decades ago, when we started as a small family beekeeping business. Since then, we have been passionately working to bring nature’s purest treasures to every customer’s table.",
+  "history": "In the beginning, we had only a few hives. Today, with hundreds of bee colonies, we ensure that we produce the highest quality honey possible. Behind every jar of honey lies hard work and dedication.",
+  "mission": "Our mission is to offer natural, pure, and sustainably produced honey that preserves the true flavors and health benefits of nature."
+},
+  
   "contact": {
     "title": "Get in Touch",
     "subtitle": "Have a question or a comment? Drop us a line, we'd love to hear from you.",

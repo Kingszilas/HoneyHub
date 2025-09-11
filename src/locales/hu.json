@@ -44,19 +44,19 @@
       "flavorsText": "Fedezze fel az egyedi és finom ízek világát."
     },
     "recipeSuggestions": {
-      "title": "MI Receptajánló",
-      "description": "Válasszon egy mézfajtát, és hagyja, hogy MI séfünk finom recepteket javasoljon Önnek.",
+      "title": "Receptajánló",
+      "description": "Válasszon egy mézfajtát, és engedje, hogy AI séfünk inspiráló, finom recepteket ajánljon Önnek.",
       "honeyTypeLabel": "Méz típusa",
-      "honeyTypePlaceholder": "Válasszon egy mézet",
-      "preferencesLabel": "Étrendi preferenciák (opcionális)",
+      "honeyTypePlaceholder": "Válasszon mézet",
+      "preferencesLabel": "Étrendi szokások vagy igények (opcionális)",
       "preferencesPlaceholder": "pl. vegetáriánus, gluténmentes, gyors és egyszerű",
-      "getRecipes": "Receptek kérése",
-      "generating": "Generálás...",
-      "suggestionsTitle": "Az Ön finom ajánlatai:",
+      "getRecipes": "Kérj receptet",
+      "generating": "GeneReceptötletek készítése...",
+      "suggestionsTitle": "Íme az ajánlataink Önnek:",
       "ingredients": "Hozzávalók",
       "instructions": "Elkészítés",
       "placeholderTitle": "A receptek itt fognak megjelenni",
-      "placeholderText": "Töltse ki a bal oldali űrlapot a kezdéshez, és fedezze fel a következő kedvenc ételét."
+      "placeholderText": "Töltse ki a bal oldali űrlapot a kezdéshez, és fedezze fel a következő kedvenc fogását."
     },
     "fromTheBlog": {
       "title": "A Kaptár Blogból",
@@ -69,6 +69,15 @@
     "subtitle": "Édes történetek, egészséges receptek és a legfrissebb zümmögés a méz világából.",
     "readMore": "Tovább olvasom"
   },
+
+    "about": {
+  "title": "Rólunk",
+  "intro": "A VitézMéz története több mint három évtizeddel ezelőtt kezdődött, amikor családi méhészetként indultunk. Azóta is szenvedélyesen dolgozunk azon, hogy a természet legtisztább kincseit hozzuk el minden vásárlónk asztalára.",
+  "history": "Kezdetben csak néhány kaptárunk volt, ma pedig több száz méhcsaláddal gondoskodunk arról, hogy a lehető legjobb minőségű mézet állítsuk elő. Minden egyes üveg méz mögött kemény munka és odafigyelés áll.",
+  "mission": "Célunk, hogy természetes, tiszta és fenntartható módon előállított mézet kínáljunk, amely megőrzi a természet valódi ízeit és jótékony hatásait."
+},
+
+  
   "contact": {
     "title": "Lépjen kapcsolatba velünk",
     "subtitle": "Kérdése vagy megjegyzése van? Írjon nekünk, örömmel hallanánk Önről.",

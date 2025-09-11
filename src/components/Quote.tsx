@@ -24,8 +24,13 @@ const quotes = {
 };
 
 export default function Quote({ lang }: QuoteProps) {
-  // Véletlenszerűen választ egy idézetet a megfelelő nyelvből
-  const randomQuote = quotes[lang][Math.floor(Math.random() * quotes[lang].length)];
+  const [randomQuote, setRandomQuote] = React.useState(quotes[lang][0]);
+
+  React.useEffect(() => {
+    const quotesForLang = quotes[lang] || quotes['en'];
+    const quote = quotesForLang[Math.floor(Math.random() * quotesForLang.length)];
+    setRandomQuote(quote);
+  }, [lang]);
 
   return (
     <section className="py-12 px-6 text-center my-10">

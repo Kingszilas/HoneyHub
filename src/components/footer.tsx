@@ -27,10 +27,10 @@ export function Footer() {
             <div>
               <h4 className="font-bold mb-4">{t('footer.shop')}</h4>
               <ul className="space-y-2 text-sm">
-                <li><Link href="/#products" className="text-muted-foreground hover:text-primary">{t('footer.allProducts')}</Link></li>
-                <li><Link href="/#products" className="text-muted-foreground hover:text-primary">{t('footer.wildflowerHoney')}</Link></li>
+                <li><Link href="/products" className="text-muted-foreground hover:text-primary">{t('footer.allProducts')}</Link></li>
+                {/*<li><Link href="/#products" className="text-muted-foreground hover:text-primary">{t('footer.wildflowerHoney')}</Link></li>
                 <li><Link href="/#products" className="text-muted-foreground hover:text-primary">{t('footer.cloverHoney')}</Link></li>
-                <li><Link href="/#products" className="text-muted-foreground hover:text-primary">{t('footer.manukaHoney')}</Link></li>
+                <li><Link href="/#products" className="text-muted-foreground hover:text-primary">{t('footer.manukaHoney')}</Link></li>*/}
               </ul>
             </div>
             <div>
@@ -38,7 +38,7 @@ export function Footer() {
               <ul className="space-y-2 text-sm">
                 <li><Link href="/blog" className="text-muted-foreground hover:text-primary">{t('footer.blog')}</Link></li>
                 <li><Link href="/#recipes" className="text-muted-foreground hover:text-primary">{t('footer.recipes')}</Link></li>
-                <li><Link href="#" className="text-muted-foreground hover:text-primary">{t('footer.aboutUs')}</Link></li>
+                <li><Link href="/about" className="text-muted-foreground hover:text-primary">{t('footer.aboutUs')}</Link></li>
               </ul>
             </div>
             <div>

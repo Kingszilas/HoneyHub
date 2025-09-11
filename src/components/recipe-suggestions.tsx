@@ -1,6 +1,7 @@
 "use client";
 
 import { useFormState, useFormStatus } from "react-dom";
+import React from 'react';
 import { getRecipeSuggestions, type RecipeState } from "@/app/actions";
 import { Button } from "@/components/ui/button";
 import {
@@ -56,7 +57,7 @@ export function RecipeSuggestions() {
   const formRef = useRef<HTMLFormElement>(null);
   
   const initialState: RecipeState = {};
-  const [state, dispatch] = useFormState(getRecipeSuggestions, initialState);
+  const [state, dispatch] = React.useActionState(getRecipeSuggestions, initialState);
 
   useEffect(() => {
     if (state?.error) {
