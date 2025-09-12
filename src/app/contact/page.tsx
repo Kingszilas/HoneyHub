@@ -29,8 +29,8 @@ export default function ContactPage() {
               <div className="ml-4">
                 <h3 className="text-lg font-semibold">{t('contact.emailUsTitle')}</h3>
                 <p className="text-muted-foreground">{t('contact.emailUsText')}</p>
-                <a href="mailto:hello@honeyhub.com" className="text-primary hover:underline">
-                  hello@honeyhub.com
+                <a href="mailto:szilard.kiraly@gmail.com" className="text-primary hover:underline">
+                  szilard.kiraly@gmail.com
                 </a>
               </div>
             </div>

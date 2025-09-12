@@ -19,6 +19,7 @@ const formSchema = z.object({
 export function ContactForm() {
   const { toast } = useToast();
   const { t } = useLanguage();
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -28,13 +29,31 @@ export function ContactForm() {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
-    toast({
-      title: "Message Sent!",
-      description: "Thanks for reaching out. We'll get back to you soon.",
-    });
-    form.reset();
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(values),
+      });
+
+      if (!res.ok) {
+        throw new Error("Failed to send message");
+      }
+
+      toast({
+        title: t("contact.successTitle") || "Üzenet elküldve!",
+        description: t("contact.successDesc") || "Köszönjük, hamarosan válaszolunk.",
+      });
+
+      form.reset();
+    } catch (err) {
+      toast({
+        title: t("contact.errorTitle") || "Hiba történt",
+        description: t("contact.errorDesc") || "Sikertelen üzenetküldés. Próbáld újra.",
+        variant: "destructive",
+      });
+    }
   }
 
   return (
@@ -45,9 +64,9 @@ export function ContactForm() {
           name="name"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>{t('contact.nameLabel')}</FormLabel>
+              <FormLabel>{t("contact.nameLabel")}</FormLabel>
               <FormControl>
-                <Input placeholder={t('contact.namePlaceholder')} {...field} />
+                <Input placeholder={t("contact.namePlaceholder")} {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -58,9 +77,9 @@ export function ContactForm() {
           name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>{t('contact.emailLabel')}</FormLabel>
+              <FormLabel>{t("contact.emailLabel")}</FormLabel>
               <FormControl>
-                <Input placeholder={t('contact.emailPlaceholder')} {...field} />
+                <Input placeholder={t("contact.emailPlaceholder")} {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -71,15 +90,17 @@ export function ContactForm() {
           name="message"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>{t('contact.messageLabel')}</FormLabel>
+              <FormLabel>{t("contact.messageLabel")}</FormLabel>
               <FormControl>
-                <Textarea placeholder={t('contact.messagePlaceholder')} className="min-h-[120px]" {...field} />
+                <Textarea placeholder={t("contact.messagePlaceholder")} className="min-h-[120px]" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
-        <Button type="submit" className="w-full">{t('contact.sendMessage')}</Button>
+        <Button type="submit" className="w-full">
+          {t("contact.sendMessage")}
+        </Button>
       </form>
     </Form>
   );
