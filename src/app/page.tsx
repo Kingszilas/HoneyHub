@@ -161,35 +161,34 @@ React.useEffect(() => {
         <RecipeSuggestions />
       </section>
 
-      <section className="py-16 md:py-24 bg-card">
-        <div className="container mx-auto px-4">
-          <h2 className="font-headline text-3xl md:text-4xl font-bold text-center mb-12">
-            {t('home.fromTheBlog.title')}
+             <section className="py-16 md:py-24 bg-gradient-to-br from-yellow-100 to-amber-200">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="font-headline text-3xl md:text-4xl font-bold mb-8 text-amber-800">
+            Hírek, nyeremények és érdekességek
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            {featuredPosts.map((post) => (
-              <div key={post.id} className="group">
-                <Image
-                  src={post.image}
-                  alt={post.title}
-                  width={800}
-                  height={500}
-                  className="w-full h-64 object-cover rounded-lg shadow-lg group-hover:opacity-90 transition-opacity"
-                  data-ai-hint="honey blog post"
-                />
-                <h3 className="font-headline text-2xl font-bold mt-6 mb-2">{post.title}</h3>
-                <p className="text-muted-foreground mb-4">{post.excerpt}</p>
-                <Button asChild variant="link" className="p-0 text-primary">
-                  <Link href={`/blog#${post.id}`}>{t('home.fromTheBlog.readMore')} <ArrowRight className="ml-2 h-4 w-4" /></Link>
-                </Button>
+          <p className="text-lg text-amber-900 max-w-2xl mx-auto mb-8">
+            Fedezd fel blogunkat, ahol hasznos tippeket, különleges nyereményjátékokat 
+            és friss híreket találsz a méhészet és a természet világából.
+          </p>
+          <Card className="max-w-3xl mx-auto border-2 border-amber-400 shadow-xl hover:shadow-2xl transition-shadow duration-300">
+            <CardContent className="p-10">
+              <div className="flex justify-center mb-4">
+                <Star className="h-10 w-10 text-amber-500" />
               </div>
-            ))}
-          </div>
-           <div className="text-center mt-12">
-            <Button asChild variant="outline">
-              <Link href="/blog">{t('home.fromTheBlog.visitBlog')} <ArrowRight className="ml-2 h-4 w-4" /></Link>
-            </Button>
-          </div>
+              <h3 className="font-headline text-2xl font-bold mb-4 text-amber-800">
+                Tudj meg többet a blogunkon!
+              </h3>
+              <p className="text-amber-700 mb-6">
+                Inspirációk, receptek és érdekességek egy helyen.
+              </p>
+              <Button asChild size="lg" className="bg-amber-500 hover:bg-amber-600 text-white font-semibold rounded-xl">
+                <Link href="/blog">
+                  Látogass el a Blog oldalra
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Link>
+              </Button>
+            </CardContent>
+          </Card>
         </div>
       </section>
 
