@@ -17,6 +17,7 @@ import { Button } from '@/components/ui/button';
 import { ArrowRight, Leaf, Star, Sprout, Wind } from 'lucide-react';
 import { RecipeSuggestions } from '@/components/recipe-suggestions';
 import { blogPosts, products } from '@/lib/data';
+import { getBlogPosts, BlogPost } from '@/lib/api';
 import { useLanguage } from '@/contexts/language-context';
 
 export default function Home() {

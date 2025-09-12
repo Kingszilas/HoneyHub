@@ -10,6 +10,7 @@ export interface BlogPost {
   title: string;
   slug: string;
   excerpt: RichTextDocument;
+  content: RichTextDocument;
   image: string;
   author: string;
   date: string;
