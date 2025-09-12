@@ -1,4 +1,5 @@
 import { createClient } from 'contentful';
+import type { Document as RichTextDocument } from '@contentful/rich-text-types';
 
 export const client = createClient({
   space: process.env.CONTENTFUL_SPACE_ID!,
@@ -8,7 +9,7 @@ export const client = createClient({
 export interface BlogPost {
   title: string;
   slug: string;
-  excerpt: string;
+  excerpt: RichTextDocument;
   image: string;
   author: string;
   date: string;
