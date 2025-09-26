@@ -19,7 +19,7 @@ export function Header() {
   const { t, setLanguage, language } = useLanguage();
 
   const navLinks = [
-    { href: "/#products", label: t("header.products") },
+    { href: "/products", label: t("header.products") },
     { href: "/#recipes", label: t("header.recipes") },
     { href: "/about", label: t("header.aboutUs") },
     { href: "/blog", label: t("header.blog") },
