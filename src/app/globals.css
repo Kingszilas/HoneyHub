@@ -1,9 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Playfair+Display:wght@400;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-body {
-  font-family: 'PT Sans', sans-serif;
+
+
+@layer base {
+  .font-headline {
+    font-family: 'Playfair Display', serif;
+  }
 }
 
 @layer base {
@@ -68,9 +74,19 @@ body {
   }
   body {
     @apply bg-background text-foreground;
+    font-family: 'Lora', serif;
   }
 }
 
+@keyframes slide {
+  0% { transform: translateX(-100%); }
+  50% { transform: translateX(100%); }
+  100% { transform: translateX(100%); }
+}
+
+.animate-slide {
+  animation: slide 2s linear infinite;
+}
 
 .bg-honeycomb-realistic {
   position: relative;

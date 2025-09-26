@@ -31,7 +31,7 @@ export const products: Product[] = [
         en: 15.99,
         hu: 3000
     },
-    image: '/images/Akácméz1.jpg',
+    image: '/images/akacmez.jpg',
   },
   {
     id: 3,
@@ -47,32 +47,56 @@ export const products: Product[] = [
         en: 9.99,
         hu: 2000
     },
-    image: '/images/Hársméz1.jpg',
+    image: '/images/repcemez.jpg',
   },
-  {
-    id: 4,
-    name: 'Manuka Honey',
-    description: 'A premium honey from New Zealand known for its unique, strong flavor and beneficial properties.',
-    price: 39.99,
-    image: 'https://picsum.photos/600/400?random=3',
-
+{
+  id: 4,
+  name: {
+    en: 'Lavender Honey',
+    hu: 'Levendulásméz'
   },
-  {
-    id: 5,
-    name: 'Buckwheat Honey',
-    description: 'A dark, robust honey with a malty, molasses-like flavor. Rich in antioxidants.',
-    price: 14.99,
-    image: 'https://picsum.photos/600/400?random=5',
-
+  description: {
+    en: 'A fragrant and floral honey with delicate lavender notes. Perfect for desserts or drizzling over yogurt.',
+    hu: 'Illatos, virágos méz finom levendula aromával. Tökéletes desszertekhez vagy joghurt tetejére.'
   },
-  {
-    id: 6,
-    name: 'Orange Blossom Honey',
-    description: 'A fragrant honey with a subtle citrusy aroma and a sweet, fruity flavor.',
-    price: 13.99,
-    image: 'https://picsum.photos/600/400?random=6',
-
+  price: {
+    en: 11.99,
+    hu: 2500
   },
+  image: '/images/levendulasmez.jpg',
+},
+{
+  id: 5,
+  name: {
+    en: 'Linden Honey',
+    hu: 'Hársméz'
+  },
+  description: {
+    en: 'Golden and aromatic honey with a mild, sweet taste. Ideal for tea or baking.',
+    hu: 'Aranyszínű, aromás méz enyhe, édes ízzel. Ideális teához vagy sütéshez.'
+  },
+  price: {
+    en: 10.99,
+    hu: 2300
+  },
+  image: '/images/Hársméz1.jpg',
+},
+{
+  id: 6,
+  name: {
+    en: 'Bee Pollen',
+    hu: 'Virágpor'
+  },
+  description: {
+    en: 'Rich in nutrients, bee pollen can be added to smoothies, cereals, or eaten on its own.',
+    hu: 'Tápanyagokban gazdag virágpor. Smoothiekhoz, gabonapelyhekhez adható vagy önmagában fogyasztható.'
+  },
+  price: {
+    en: 12.99,
+    hu: 2800
+  },
+  image: '/images/virágpor.jpg',
+},
 ];
 
 export const blogPosts: BlogPost[] = [
