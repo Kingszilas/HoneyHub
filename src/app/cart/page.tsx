@@ -1,21 +1,78 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { useCart } from "@/contexts/cart-context";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Trash2, ArrowLeft, Minus, Plus } from "lucide-react";
 import Image from "next/image";
+import { useToast } from "@/hooks/use-toast";
 
 export default function CartPage() {
   const { items, removeFromCart, clearCart, updateQuantity } = useCart();
+  const { toast } = useToast();
+  const [loading, setLoading] = useState(false);
 
   const total = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
+  const [customerName, setCustomerName] = useState("");
+  const [customerEmail, setCustomerEmail] = useState("");
+  const [customerPhone, setCustomerPhone] = useState("");
+
+  const isEmailValid = (email: string) =>
+    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+  const isPhoneValid = (phone: string) =>
+    /^\+?\d[\d\s\-]{6,}$/.test(phone);
+
+  const isFormValid =
+    customerName.trim() !== "" &&
+    isEmailValid(customerEmail) &&
+    isPhoneValid(customerPhone);
+
+  const handleCheckout = async () => {
+    if (!isFormValid || items.length === 0) return;
+
+    setLoading(true);
+
+    // Backendnek küldendő payload
+    const payload = {
+      name: customerName,
+      email: customerEmail,
+      phone: customerPhone,
+      items: items.map(item => ({
+        name: item.name,
+        price: item.price,
+        quantity: item.quantity,
+      })),
+    };
+
+    try {
+      const res = await fetch("/api/checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      if (!res.ok) throw new Error("Hiba történt az email küldés során");
+
+      toast({ title: "Siker!", description: "Rendelés elküldve." });
+      clearCart();
+      setCustomerName("");
+      setCustomerEmail("");
+      setCustomerPhone("");
+    } catch (err) {
+      console.error(err);
+      toast({ title: "Hiba", description: "Nem sikerült elküldeni a rendelést." });
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="flex flex-col min-h-screen">
-      {/* Hero section egyszerű háttérrel */}
+      {/* Hero section */}
       <section className="relative w-full h-48 flex items-center justify-center bg-amber-100">
         <h1 className="font-headline text-4xl md:text-6xl font-bold text-amber-900">
           Kosár
@@ -55,36 +112,25 @@ export default function CartPage() {
                         <Button
                           variant="outline"
                           size="icon"
-                          onClick={() =>
-                            updateQuantity(item.id, item.quantity - 1)
-                          }
+                          onClick={() => updateQuantity(item.id, item.quantity - 1)}
                           disabled={item.quantity <= 1}
                         >
                           <Minus className="h-4 w-4" />
                         </Button>
-                        <span className="text-lg font-semibold w-8 text-center">
-                          {item.quantity}
-                        </span>
+                        <span className="text-lg font-semibold w-8 text-center">{item.quantity}</span>
                         <Button
                           variant="outline"
                           size="icon"
-                          onClick={() =>
-                            updateQuantity(item.id, item.quantity + 1)
-                          }
+                          onClick={() => updateQuantity(item.id, item.quantity + 1)}
                         >
                           <Plus className="h-4 w-4" />
                         </Button>
                       </div>
-
-                      <p className="mt-3 font-semibold">
-                        {item.price} Ft / db
-                      </p>
+                      <p className="mt-3 font-semibold">{item.price.toLocaleString("hu-HU")} Ft / db</p>
                       <p className="text-muted-foreground">
-                        Összesen:{" "}
-                        {(item.price * item.quantity).toLocaleString("hu-HU")} Ft
+                        Összesen: {(item.price * item.quantity).toLocaleString("hu-HU")} Ft
                       </p>
                     </div>
-
                     <Button
                       onClick={() => removeFromCart(item.id)}
                       variant="destructive"
@@ -97,7 +143,7 @@ export default function CartPage() {
               ))}
             </div>
 
-            {/* Összegzés */}
+            {/* Összegzés + vásárlói adatok */}
             <div>
               <Card className="p-6">
                 <CardHeader>
@@ -108,9 +154,50 @@ export default function CartPage() {
                     Összesen: {total.toLocaleString("hu-HU")} Ft
                   </p>
                 </CardContent>
+                <CardContent className="flex flex-col gap-4">
+                  <label className="flex flex-col">
+                    Név (kötelező)
+                    <input
+                      type="text"
+                      value={customerName}
+                      onChange={(e) => setCustomerName(e.target.value)}
+                      className="border rounded p-2 mt-1"
+                      placeholder="Add meg a neved"
+                      required
+                    />
+                  </label>
+
+                  <label className="flex flex-col">
+                    E-mail (kötelező)
+                    <input
+                      type="email"
+                      value={customerEmail}
+                      onChange={(e) => setCustomerEmail(e.target.value)}
+                      className="border rounded p-2 mt-1"
+                      placeholder="Add meg az e-mail címed"
+                      required
+                    />
+                  </label>
+
+                  <label className="flex flex-col">
+                    Telefonszám (kötelező)
+                    <input
+                      type="tel"
+                      value={customerPhone}
+                      onChange={(e) => setCustomerPhone(e.target.value)}
+                      className="border rounded p-2 mt-1"
+                      placeholder="Pl. +36 30 123 4567"
+                      required
+                    />
+                  </label>
+                </CardContent>
                 <CardFooter className="flex flex-col gap-4">
-                  <Button asChild className="w-full">
-                    <Link href="/checkout">Tovább a megrendeléshez</Link>
+                  <Button
+                    onClick={handleCheckout}
+                    disabled={loading || !isFormValid}
+                    className="w-full"
+                  >
+                    {loading ? "Küldés..." : "Tovább a megrendeléshez"}
                   </Button>
                   <Button
                     onClick={clearCart}
