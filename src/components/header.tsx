@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { BeeIcon } from "./icons/bee-icon";
 import { Button } from "./ui/button";
-import { Menu, Globe, Facebook, Instagram } from "lucide-react";
+import { Menu, Globe, Facebook, Instagram, ShoppingCart, } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
 import { useLanguage } from "@/contexts/language-context";
 import {
@@ -14,9 +14,14 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { useCart } from "@/contexts/cart-context";
+
 
 export function Header() {
   const { t, setLanguage, language } = useLanguage();
+  const { items } = useCart();
+  const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
+
 
   const navLinks = [
     { href: "/products", label: t("header.products") },
@@ -63,7 +68,7 @@ export function Header() {
   ))}
 </nav>
 
-        {/* Right side: Socials + Language */}
+        {/* Right side: Socials + Language + Cart*/}
         <div className="hidden md:flex items-center gap-4">
           {/* Social Icons */}
           <Link
@@ -77,6 +82,16 @@ export function Header() {
             className="text-muted-foreground hover:text-primary transition"
           >
             <Instagram className="h-5 w-5" />
+          </Link>
+
+           {/* Kosár ikon */}
+          <Link href="/cart" className="relative">
+            <ShoppingCart className="h-6 w-6 text-gray-800" />
+            {totalItems > 0 && (
+              <span className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full text-xs w-5 h-5 flex items-center justify-center">
+                {totalItems}
+              </span>
+            )}
           </Link>
 
           {/* Language Selector */}
@@ -119,9 +134,14 @@ export function Header() {
                   <Link
                     key={link.href}
                     href={link.href}
-                    className="text-lg font-medium transition-colors hover:text-primary"
+                    className="text-lg font-medium transition-colors hover:text-primary flex items-center gap-2"
                   >
                     {link.label}
+                    {link.href === "/cart" && totalItems > 0 && (
+                      <span className="bg-red-500 text-white rounded-full text-xs w-5 h-5 flex items-center justify-center">
+                        {totalItems}
+                      </span>
+                    )}
                   </Link>
                 ))}
                 {/* Social + Language in mobile */}

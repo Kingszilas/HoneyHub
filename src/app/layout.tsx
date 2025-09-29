@@ -5,6 +5,8 @@ import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';
 import { Toaster } from "@/components/ui/toaster"
 import { LanguageProvider } from '@/contexts/language-context';
+import { Providers } from '@/components/Providers'; 
+
 
 export const metadata: Metadata = {
   title: 'VitézMéz',
@@ -25,10 +27,12 @@ export default function RootLayout({
       </head>
       <body className={cn('font-body antialiased min-h-screen flex flex-col')}>
         <LanguageProvider>
-          <Header />
-          <main className="flex-grow">{children}</main>
-          <Footer />
-          <Toaster />
+          <Providers>
+            <Header />
+            <main className="flex-grow">{children}</main>
+            <Footer />
+            <Toaster />
+          </Providers>
         </LanguageProvider>
       </body>
     </html>

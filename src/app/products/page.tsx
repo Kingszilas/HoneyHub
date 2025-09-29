@@ -14,9 +14,16 @@ import { Button } from "@/components/ui/button";
 import { products } from "@/lib/data";
 import { useLanguage } from "@/contexts/language-context";
 import { Phone } from "lucide-react";
+import { useCart } from "@/contexts/cart-context";
+import { useToast } from "@/hooks/use-toast";
+
+
+
 
 export default function ProductsPage() {
   const { t, language } = useLanguage();
+  const { addToCart } = useCart();
+  const { toast } = useToast();
 
   const getProductLocale = (
     product: (typeof products)[0],
@@ -63,7 +70,7 @@ export default function ProductsPage() {
                 <strong>E-mail:</strong> rendeles@vitezmez.hu
               </p>
               <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-black font-semibold rounded-xl mt-4">
-                <Link href="/contact">Rendelés leadása most</Link>
+                <Link href="/cart">Rendelés leadása most</Link>
               </Button>
             </div>
 
@@ -107,7 +114,22 @@ export default function ProductsPage() {
                 <p className="text-2xl font-bold text-foreground">
                   {formatPrice(getProductLocale(product, "price") as number)}
                 </p>
-                <Button>{t("home.featuredProducts.addToCart")}</Button>
+                <Button
+                  onClick={() => {
+    addToCart({
+      ...product,
+      name: getProductLocale(product, "name") as string,
+      price: getProductLocale(product, "price") as number,
+    });
+
+    toast({
+                    title: "Hozzáadva a kosárhoz 🛒",
+                    description: `${getProductLocale(product, "name")} sikeresen hozzáadva.`,
+                  });
+  }}
+>
+  {t("home.featuredProducts.addToCart")}
+                </Button>
               </CardFooter>
             </Card>
           ))}
