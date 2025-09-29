@@ -144,6 +144,20 @@ export function Header() {
                     )}
                   </Link>
                 ))}
+    {/* Kosár link extra, ha nem szerepel a navLinks-ben */}
+    {!navLinks.find(l => l.href === "/cart") && (
+      <Link
+        href="/cart"
+        className="text-lg font-medium transition-colors hover:text-primary flex items-center gap-2"
+      >
+        Kosár
+        {totalItems > 0 && (
+          <span className="bg-red-500 text-white rounded-full text-xs w-5 h-5 flex items-center justify-center">
+            {totalItems}
+          </span>
+        )}
+      </Link>
+    )}
                 {/* Social + Language in mobile */}
                 <div className="flex gap-4 pt-4">
                   <Link
