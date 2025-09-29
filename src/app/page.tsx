@@ -38,7 +38,7 @@ export default function Home() {
     }
     return value;
   };
-  
+
   const formatPrice = (price: number) => {
     if (language === 'hu') {
       return `${price.toLocaleString('hu-HU')} Ft`;
@@ -96,7 +96,9 @@ export default function Home() {
                 </CardContent>
                 <CardFooter className="p-6 pt-0 flex justify-between items-center">
                   <p className="text-2xl font-bold text-foreground">{formatPrice(getProductLocale(product, 'price') as number)}</p>
-                  <Button>{t('home.featuredProducts.addToCart')}</Button>
+                  <Button asChild>
+                    <Link href="/products">{t('home.featuredProducts.buyNow') || 'Vásárlás'}</Link>
+                  </Button>
                 </CardFooter>
               </Card>
             ))}
@@ -146,67 +148,67 @@ export default function Home() {
         <RecipeSuggestions />
       </section>
 
-     {/* Blog + Rendelés felhívás */}
-<section className="py-16 md:py-24 bg-gradient-to-br from-yellow-100 to-amber-200">
-  <div className="container mx-auto px-4 flex flex-col md:flex-row gap-12">
+      {/* Blog + Rendelés felhívás */}
+      <section className="py-16 md:py-24 bg-gradient-to-br from-yellow-100 to-amber-200">
+        <div className="container mx-auto px-4 flex flex-col md:flex-row gap-12">
 
-    {/* Blog felhívás */}
-    <div className="flex-1 max-w-3xl mx-auto text-center md:text-left">
-      <h2 className="font-headline text-3xl md:text-4xl font-bold mb-4 text-amber-800">
-        Hírek, tippek és szolgáltatásaink
-      </h2>
-      <p className="text-lg text-amber-900 mb-6">
-        Fedezd fel blogunkat, ahol további információkat, inspirációkat és friss híreket találsz a méhészet és a természet világából.
-      </p>
-      <Button asChild size="lg" className="bg-amber-500 hover:bg-amber-600 text-white font-semibold rounded-xl">
-        <Link href="/blog">
-          Látogass el a Blog oldalra
-          <ArrowRight className="ml-2 h-5 w-5" />
-        </Link>
-      </Button>
-    </div>
+          {/* Blog felhívás */}
+          <div className="flex-1 max-w-3xl mx-auto text-center md:text-left">
+            <h2 className="font-headline text-3xl md:text-4xl font-bold mb-4 text-amber-800">
+              Hírek, tippek és szolgáltatásaink
+            </h2>
+            <p className="text-lg text-amber-900 mb-6">
+              Fedezd fel blogunkat, ahol további információkat, inspirációkat és friss híreket találsz a méhészet és a természet világából.
+            </p>
+            <Button asChild size="lg" className="bg-amber-500 hover:bg-amber-600 text-white font-semibold rounded-xl">
+              <Link href="/blog">
+                Látogass el a Blog oldalra
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Link>
+            </Button>
+          </div>
 
-    {/* Rendelés leadása */}
-    <div 
-      className="flex-1 max-w-3xl mx-auto border-2 border-amber-400 shadow-lg rounded-xl p-10 bg-white/30 backdrop-blur-md relative overflow-hidden"
-      style={{ 
-        backgroundImage: `url('/images/contactfoto3.jpg')`, 
-        backgroundSize: 'cover', 
-        backgroundPosition: 'center' 
-      }}
-    >
-      <div className="absolute inset-0 bg-black/25 rounded-xl"></div> {/* overlay a kontraszthoz */}
-      
-      <div className="relative z-10 flex flex-col md:flex-row items-center justify-center gap-6 text-white">
-  {/* Telefon */}
-  <div className="flex flex-col items-center gap-2 relative overflow-hidden">
-    <Phone className="h-10 w-10 text-amber-200" />
-    <p className="font-semibold text-xl relative z-10 overflow-hidden">
-      <span className="relative z-10">Telefonon várjuk rendelésed</span>
-      <span className="absolute inset-0 bg-white/20 transform -translate-x-full animate-slide"></span>
-    </p>
-    <p className="text-lg relative z-10">+36 30 123 4567</p>
-  </div>
+          {/* Rendelés leadása */}
+          <div
+            className="flex-1 max-w-3xl mx-auto border-2 border-amber-400 shadow-lg rounded-xl p-10 bg-white/30 backdrop-blur-md relative overflow-hidden"
+            style={{
+              backgroundImage: `url('/images/contactfoto3.jpg')`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center'
+            }}
+          >
+            <div className="absolute inset-0 bg-black/25 rounded-xl"></div> {/* overlay a kontraszthoz */}
 
-  {/* Email */}
-  <div className="flex flex-col items-center gap-2 relative overflow-hidden">
-    <Mail className="h-10 w-10 text-amber-200" />
-    <p className="font-semibold text-xl relative z-10 overflow-hidden">
-      <span className="relative z-10">E-mailben is leadhatod</span>
-      <span className="absolute inset-0 bg-white/20 transform -translate-x-full animate-slide"></span>
-    </p>
-    <p className="text-lg relative z-10">rendeles@vitezmez.hu</p>
+            <div className="relative z-10 flex flex-col md:flex-row items-center justify-center gap-6 text-white">
+              {/* Telefon */}
+              <div className="flex flex-col items-center gap-2 relative overflow-hidden">
+                <Phone className="h-10 w-10 text-amber-200" />
+                <p className="font-semibold text-xl relative z-10 overflow-hidden">
+                  <span className="relative z-10">Telefonon várjuk rendelésed</span>
+                  <span className="absolute inset-0 bg-white/20 transform -translate-x-full animate-slide"></span>
+                </p>
+                <p className="text-lg relative z-10">+36 30 123 4567</p>
+              </div>
+
+              {/* Email */}
+              <div className="flex flex-col items-center gap-2 relative overflow-hidden">
+                <Mail className="h-10 w-10 text-amber-200" />
+                <p className="font-semibold text-xl relative z-10 overflow-hidden">
+                  <span className="relative z-10">E-mailben is leadhatod</span>
+                  <span className="absolute inset-0 bg-white/20 transform -translate-x-full animate-slide"></span>
+                </p>
+                <p className="text-lg relative z-10">rendeles@vitezmez.hu</p>
+              </div>
+            </div>
+            <div className="mt-6 text-center relative z-10">
+              <Button asChild size="lg" className="bg-primary text-white font-semibold rounded-xl px-6 py-3">
+                <Link href="/contact">Rendelés leadása most</Link>
+              </Button>
+            </div>
+          </div>
+
         </div>
-      </div>
-      <div className="mt-6 text-center relative z-10">
-        <Button asChild size="lg" className="bg-primary text-white font-semibold rounded-xl px-6 py-3">
-          <Link href="/contact">Rendelés leadása most</Link>
-        </Button>
-      </div>
-    </div>
-
-  </div>
-</section>
+      </section>
 
     </div>
   );

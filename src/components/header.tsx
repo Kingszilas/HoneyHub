@@ -29,7 +29,7 @@ export function Header() {
     { href: "/about", label: t("header.aboutUs") },
     { href: "/blog", label: t("header.blog") },
     { href: "/contact", label: t("header.contact") },
-    
+
   ];
 
   return (
@@ -50,23 +50,23 @@ export function Header() {
         </Link>
 
         {/* Navigation (középen) */}
-   <nav className="hidden md:flex items-center gap-6">
-  {navLinks.map((link) => (
-    <Button
-      key={link.href}
-      asChild
-      variant="ghost"
-      className="
+        <nav className="hidden md:flex items-center gap-6">
+          {navLinks.map((link) => (
+            <Button
+              key={link.href}
+              asChild
+              variant="ghost"
+              className="
         text-base font-semibold tracking-wide text-gray-800
         px-4 py-2 rounded-lg border border-transparent
         transition-all duration-300
         hover:border-primary hover:shadow-lg hover:scale-105
       "
-    >
-      <Link href={link.href}>{link.label}</Link>
-    </Button>
-  ))}
-</nav>
+            >
+              <Link href={link.href}>{link.label}</Link>
+            </Button>
+          ))}
+        </nav>
 
         {/* Right side: Socials + Language + Cart*/}
         <div className="hidden md:flex items-center gap-4">
@@ -84,7 +84,7 @@ export function Header() {
             <Instagram className="h-5 w-5" />
           </Link>
 
-           {/* Kosár ikon */}
+          {/* Kosár ikon */}
           <Link href="/cart" className="relative">
             <ShoppingCart className="h-6 w-6 text-gray-800" />
             {totalItems > 0 && (
@@ -119,8 +119,19 @@ export function Header() {
           </DropdownMenu>
         </div>
 
-        {/* Mobile Menu */}
-        <div className="md:hidden">
+       {/* Mobile Menu */}
+        <div className="md:hidden flex items-center gap-4">
+          {/* Mobile Cart Icon */}
+          <Link href="/cart" className="relative">
+            <ShoppingCart className="h-6 w-6 text-gray-800" />
+            {totalItems > 0 && (
+              <span className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full text-xs w-5 h-5 flex items-center justify-center">
+                {totalItems}
+              </span>
+            )}
+          </Link>
+
+          {/* Sheet Menu */}
           <Sheet>
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon">
@@ -137,53 +148,23 @@ export function Header() {
                     className="text-lg font-medium transition-colors hover:text-primary flex items-center gap-2"
                   >
                     {link.label}
-                    {link.href === "/cart" && totalItems > 0 && (
-                      <span className="bg-red-500 text-white rounded-full text-xs w-5 h-5 flex items-center justify-center">
-                        {totalItems}
-                      </span>
-                    )}
                   </Link>
                 ))}
-    {/* Kosár link extra, ha nem szerepel a navLinks-ben */}
-    {!navLinks.find(l => l.href === "/cart") && (
-      <Link
-        href="/cart"
-        className="text-lg font-medium transition-colors hover:text-primary flex items-center gap-2"
-      >
-        Kosár
-        {totalItems > 0 && (
-          <span className="bg-red-500 text-white rounded-full text-xs w-5 h-5 flex items-center justify-center">
-            {totalItems}
-          </span>
-        )}
-      </Link>
-    )}
-                {/* Social + Language in mobile */}
+                {/* Social Icons */}
                 <div className="flex gap-4 pt-4">
-                  <Link
-                    href="https://www.facebook.com/vitez.tibor.7"
-                    className="text-muted-foreground hover:text-primary"
-                  >
+                  <Link href="https://www.facebook.com/vitez.tibor.7" className="text-muted-foreground hover:text-primary">
                     <Facebook className="h-6 w-6" />
                   </Link>
-                  <Link
-                    href="https://www.instagram.com/viteztibor07/"
-                    className="text-muted-foreground hover:text-primary"
-                  >
+                  <Link href="https://www.instagram.com/viteztibor07/" className="text-muted-foreground hover:text-primary">
                     <Instagram className="h-6 w-6" />
                   </Link>
                 </div>
+                {/* Language */}
                 <div className="flex gap-4 pt-4">
-                  <Button
-                    variant={language === "en" ? "secondary" : "ghost"}
-                    onClick={() => setLanguage("en")}
-                  >
+                  <Button variant={language === "en" ? "secondary" : "ghost"} onClick={() => setLanguage("en")}>
                     EN
                   </Button>
-                  <Button
-                    variant={language === "hu" ? "secondary" : "ghost"}
-                    onClick={() => setLanguage("hu")}
-                  >
+                  <Button variant={language === "hu" ? "secondary" : "ghost"} onClick={() => setLanguage("hu")}>
                     HU
                   </Button>
                 </div>
