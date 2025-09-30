@@ -6,6 +6,7 @@ import { Footer } from '@/components/footer';
 import { Toaster } from "@/components/ui/toaster"
 import { LanguageProvider } from '@/contexts/language-context';
 import { Providers } from '@/components/Providers'; 
+import CookieConsent from "@/components/CookieConsent";
 
 
 export const metadata: Metadata = {
@@ -29,6 +30,7 @@ export default function RootLayout({
         <LanguageProvider>
           <Providers>
             <Header />
+            <CookieConsent />
             <main className="flex-grow">{children}</main>
             <Footer />
             <Toaster />

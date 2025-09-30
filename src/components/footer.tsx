@@ -53,6 +53,14 @@ export function Footer() {
         </div>
         <div className="mt-8 border-t border-border pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-sm text-muted-foreground">&copy; {new Date().getFullYear()} {t('footer.copyright')}</p>
+           {/* 🔥 Új gomb a sütikhez */}
+            <button
+              onClick={() => (window as any).openCookieConsent()}
+              className="text-sm underline text-muted-foreground hover:text-primary"
+            >
+              Süti beállítások
+            </button>
+
           <div className="flex space-x-4 mt-4 md:mt-0">
             {/*<Link href="#" className="text-muted-foreground hover:text-primary"><Twitter className="h-5 w-5" /></Link>*/}
             <Link href="https://www.facebook.com/vitez.tibor.7" className="text-muted-foreground hover:text-primary"><Facebook className="h-5 w-5" /></Link>
