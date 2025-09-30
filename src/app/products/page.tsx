@@ -1,34 +1,20 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardFooter,
-} from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
 import { products } from "@/lib/data";
 import { useLanguage } from "@/contexts/language-context";
 import { Phone } from "lucide-react";
 import { useCart } from "@/contexts/cart-context";
 import { useToast } from "@/hooks/use-toast";
-
-
-
+import { PrimaryButton } from "@/components/PrimaryButton";
 
 export default function ProductsPage() {
   const { t, language } = useLanguage();
   const { addToCart } = useCart();
   const { toast } = useToast();
 
-  const getProductLocale = (
-    product: (typeof products)[0],
-    field: "name" | "description" | "price"
-  ) => {
+  const getProductLocale = (product: (typeof products)[0], field: "name" | "description" | "price") => {
     const value = product[field];
     if (typeof value === "object") {
       return value[language] ?? value["en"];
@@ -37,9 +23,7 @@ export default function ProductsPage() {
   };
 
   const formatPrice = (price: number) => {
-    if (language === "hu") {
-      return `${price.toLocaleString("hu-HU")} Ft`;
-    }
+    if (language === "hu") return `${price.toLocaleString("hu-HU")} Ft`;
     return `$${price.toFixed(2)}`;
   };
 
@@ -69,9 +53,9 @@ export default function ProductsPage() {
                 <strong>Telefon:</strong> +36 30 123 4567 <br />
                 <strong>E-mail:</strong> rendeles@vitezmez.hu
               </p>
-              <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-black font-semibold rounded-xl mt-4">
-                <Link href="/cart">Rendelés leadása most</Link>
-              </Button>
+              <PrimaryButton href="/contact">
+                Rendelés leadása most
+              </PrimaryButton>
             </div>
 
             {/* Háttér dekoráció */}
@@ -83,7 +67,6 @@ export default function ProductsPage() {
                 className="object-cover object-center rounded-2xl opacity-70"
               />
             </div>
-
           </div>
         </div>
 
@@ -114,22 +97,22 @@ export default function ProductsPage() {
                 <p className="text-2xl font-bold text-foreground">
                   {formatPrice(getProductLocale(product, "price") as number)}
                 </p>
-                <Button
+                <PrimaryButton
                   onClick={() => {
-    addToCart({
-      ...product,
-      name: getProductLocale(product, "name") as string,
-      price: getProductLocale(product, "price") as number,
-    });
+                    addToCart({
+                      ...product,
+                      name: getProductLocale(product, "name") as string,
+                      price: getProductLocale(product, "price") as number,
+                    });
 
-    toast({
-                    title: "Hozzáadva a kosárhoz 🛒",
-                    description: `${getProductLocale(product, "name")} sikeresen hozzáadva.`,
-                  });
-  }}
->
-  {t("home.featuredProducts.addToCart")}
-                </Button>
+                    toast({
+                      title: "Hozzáadva a kosárhoz 🛒",
+                      description: `${getProductLocale(product, "name")} sikeresen hozzáadva.`,
+                    });
+                  }}
+                >
+                  {t("home.featuredProducts.addToCart") || "Kosárba"}
+                </PrimaryButton>
               </CardFooter>
             </Card>
           ))}

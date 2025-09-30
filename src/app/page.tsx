@@ -10,6 +10,50 @@ import { ArrowRight, Leaf, Star, Sprout, Wind, Phone, Mail } from 'lucide-react'
 import { RecipeSuggestions } from '@/components/recipe-suggestions';
 import { blogPosts, products } from '@/lib/data';
 import { useLanguage } from '@/contexts/language-context';
+import { motion, useAnimation } from "framer-motion";
+import { useEffect, useState } from "react";
+import { PrimaryButton } from '@/components/PrimaryButton';
+
+
+
+function SmoothInfiniteLoopText({ texts }: { texts: string[] }) {
+  const itemHeight = 80; // px, h-20-hoz igazítva
+  const totalHeight = texts.length * itemHeight;
+
+  return (
+    <div className="overflow-hidden h-20 flex flex-col">
+      <motion.div
+        style={{ y: 0 }}
+        animate={{ y: [0, -totalHeight] }}
+        transition={{
+          duration: texts.length * 3, // lassabb, pl. 3s / sor
+          ease: "linear",
+          repeat: Infinity,
+        }}
+        className="flex flex-col"
+      >
+        {texts.map((text, i) => (
+          <div
+            key={i}
+            className="h-20 flex items-center justif-start"
+          >
+            {text}
+          </div>
+        ))}
+        {/* ismételjük meg a listát a sima loophoz */}
+        {texts.map((text, i) => (
+          <div
+            key={`repeat-${i}`}
+            className="h-20 flex items-center justify-start"
+          >
+            {text}
+          </div>
+        ))}
+      </motion.div>
+    </div>
+  );
+}
+
 
 export default function Home() {
   const { t, language } = useLanguage();
@@ -22,6 +66,12 @@ export default function Home() {
     "/images/pexels-umsiedlungen-1035224.jpg",
     "/images/pexels-rajsteven-2949743.jpg",
     "/images/pexels-karolina-grabowska-5478144.jpg",
+  ];
+
+  const mottos = [
+    "Tiszta méz",
+    "Tiszta öröm",
+    "A természet ajándéka mindennapra",
   ];
 
   const [randomImg, setRandomImg] = React.useState(myImages[0]);
@@ -56,15 +106,22 @@ export default function Home() {
       >
         <div className="absolute inset-0 bg-black/50" />
         <div className="relative z-10 text-center text-white px-4">
-          <h1 className="font-headline text-4xl md:text-7xl font-bold drop-shadow-lg">
-            {t('home.hero.title')}
+          <h1 className="flex items-center gap-3 text-4xl md:text-7xl font-bold drop-shadow-lg">
+            <span>VitézMéz:</span>
+            <SmoothInfiniteLoopText
+              texts={[
+                "Tiszta méz",
+                "Tiszta öröm",
+                "A természet ajándéka mindennapra"
+              ]}
+            />
           </h1>
           <p className="mt-4 text-lg md:text-2xl max-w-2xl mx-auto">
             {t('home.hero.subtitle')}
           </p>
-          <Button asChild size="lg" className="mt-8 bg-primary hover:bg-primary/90 text-primary-foreground font-bold">
-            <Link href="/products">{t('home.hero.shopNow')}</Link>
-          </Button>
+          <div className="mt-8 inline-block">
+            <PrimaryButton href="/contact">Vásárlás most</PrimaryButton>
+          </div>
         </div>
       </section>
 
@@ -96,17 +153,17 @@ export default function Home() {
                 </CardContent>
                 <CardFooter className="p-6 pt-0 flex justify-between items-center">
                   <p className="text-2xl font-bold text-foreground">{formatPrice(getProductLocale(product, 'price') as number)}</p>
-                  <Button asChild>
-                    <Link href="/products">{t('home.featuredProducts.buyNow') || 'Vásárlás'}</Link>
-                  </Button>
+                  <PrimaryButton href="/products">
+                    {t('home.featuredProducts.buyNow') || 'Vásárlás'}
+                  </PrimaryButton>
                 </CardFooter>
               </Card>
             ))}
           </div>
           <div className="text-center mt-12">
-            <Button asChild variant="outline">
-              <Link href="/products">{t('home.featuredProducts.viewAll')} <ArrowRight className="ml-2 h-4 w-4" /></Link>
-            </Button>
+            <PrimaryButton href="/products">
+              {t('home.featuredProducts.viewAll')}
+            </PrimaryButton>
           </div>
         </div>
       </section>
@@ -160,12 +217,10 @@ export default function Home() {
             <p className="text-lg text-amber-900 mb-6">
               Fedezd fel blogunkat, ahol további információkat, inspirációkat és friss híreket találsz a méhészet és a természet világából.
             </p>
-            <Button asChild size="lg" className="bg-amber-500 hover:bg-amber-600 text-white font-semibold rounded-xl">
-              <Link href="/blog">
-                Látogass el a Blog oldalra
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
-            </Button>
+            <PrimaryButton href="/blog">
+              Látogass el a Blog oldalra
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </PrimaryButton>
           </div>
 
           {/* Rendelés leadása */}
@@ -201,9 +256,9 @@ export default function Home() {
               </div>
             </div>
             <div className="mt-6 text-center relative z-10">
-              <Button asChild size="lg" className="bg-primary text-white font-semibold rounded-xl px-6 py-3">
-                <Link href="/contact">Rendelés leadása most</Link>
-              </Button>
+              <PrimaryButton href="/contact">
+                Rendelés leadása most
+              </PrimaryButton>
             </div>
           </div>
 

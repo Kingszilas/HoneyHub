@@ -1,27 +1,19 @@
-
 "use client";
 
 import Link from "next/link";
 import Image from "next/image";
-import { BeeIcon } from "./icons/bee-icon";
 import { Button } from "./ui/button";
-import { Menu, Globe, Facebook, Instagram, ShoppingCart, } from "lucide-react";
+import { Menu, Globe, Facebook, Instagram, ShoppingCart } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
 import { useLanguage } from "@/contexts/language-context";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { useCart } from "@/contexts/cart-context";
-
+import { PrimaryButton } from "@/components/PrimaryButton";
 
 export function Header() {
   const { t, setLanguage, language } = useLanguage();
   const { items } = useCart();
   const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
-
 
   const navLinks = [
     { href: "/products", label: t("header.products") },
@@ -29,8 +21,9 @@ export function Header() {
     { href: "/about", label: t("header.aboutUs") },
     { href: "/blog", label: t("header.blog") },
     { href: "/contact", label: t("header.contact") },
-
   ];
+
+  const iconClass = "h-6 w-6 text-gray-600 transition-colors duration-200 hover:text-primary";
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -49,44 +42,28 @@ export function Header() {
           </span>
         </Link>
 
-        {/* Navigation (középen) */}
+        {/* Navigation (desktop) */}
         <nav className="hidden md:flex items-center gap-6">
           {navLinks.map((link) => (
-            <Button
-              key={link.href}
-              asChild
-              variant="ghost"
-              className="
-        text-base font-semibold tracking-wide text-gray-800
-        px-4 py-2 rounded-lg border border-transparent
-        transition-all duration-300
-        hover:border-primary hover:shadow-lg hover:scale-105
-      "
-            >
-              <Link href={link.href}>{link.label}</Link>
-            </Button>
+            <PrimaryButton key={link.href} href={link.href}>
+              {link.label}
+            </PrimaryButton>
           ))}
         </nav>
 
-        {/* Right side: Socials + Language + Cart*/}
+        {/* Right side: Socials + Language + Cart */}
         <div className="hidden md:flex items-center gap-4">
           {/* Social Icons */}
-          <Link
-            href="https://www.facebook.com/vitez.tibor.7"
-            className="text-muted-foreground hover:text-primary transition"
-          >
-            <Facebook className="h-5 w-5" />
+          <Link href="https://www.facebook.com/vitez.tibor.7" className={iconClass}>
+            <Facebook />
           </Link>
-          <Link
-            href="https://www.instagram.com/viteztibor07/"
-            className="text-muted-foreground hover:text-primary transition"
-          >
-            <Instagram className="h-5 w-5" />
+          <Link href="https://www.instagram.com/viteztibor07/" className={iconClass}>
+            <Instagram />
           </Link>
 
-          {/* Kosár ikon */}
+          {/* Cart */}
           <Link href="/cart" className="relative">
-            <ShoppingCart className="h-6 w-6 text-gray-800" />
+            <ShoppingCart className={iconClass} />
             {totalItems > 0 && (
               <span className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full text-xs w-5 h-5 flex items-center justify-center">
                 {totalItems}
@@ -103,27 +80,21 @@ export function Header() {
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
-              <DropdownMenuItem
-                onClick={() => setLanguage("en")}
-                disabled={language === "en"}
-              >
+              <DropdownMenuItem onClick={() => setLanguage("en")} disabled={language === "en"}>
                 English
               </DropdownMenuItem>
-              <DropdownMenuItem
-                onClick={() => setLanguage("hu")}
-                disabled={language === "hu"}
-              >
+              <DropdownMenuItem onClick={() => setLanguage("hu")} disabled={language === "hu"}>
                 Magyar
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
 
-       {/* Mobile Menu */}
+        {/* Mobile Menu */}
         <div className="md:hidden flex items-center gap-4">
-          {/* Mobile Cart Icon */}
+          {/* Mobile Cart */}
           <Link href="/cart" className="relative">
-            <ShoppingCart className="h-6 w-6 text-gray-800" />
+            <ShoppingCart className={iconClass} />
             {totalItems > 0 && (
               <span className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full text-xs w-5 h-5 flex items-center justify-center">
                 {totalItems}
@@ -142,23 +113,21 @@ export function Header() {
             <SheetContent side="right">
               <div className="flex flex-col gap-6 pt-12">
                 {navLinks.map((link) => (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    className="text-lg font-medium transition-colors hover:text-primary flex items-center gap-2"
-                  >
+                  <PrimaryButton key={link.href} href={link.href}>
                     {link.label}
-                  </Link>
+                  </PrimaryButton>
                 ))}
+
                 {/* Social Icons */}
                 <div className="flex gap-4 pt-4">
-                  <Link href="https://www.facebook.com/vitez.tibor.7" className="text-muted-foreground hover:text-primary">
-                    <Facebook className="h-6 w-6" />
+                  <Link href="https://www.facebook.com/vitez.tibor.7" className={iconClass}>
+                    <Facebook />
                   </Link>
-                  <Link href="https://www.instagram.com/viteztibor07/" className="text-muted-foreground hover:text-primary">
-                    <Instagram className="h-6 w-6" />
+                  <Link href="https://www.instagram.com/viteztibor07/" className={iconClass}>
+                    <Instagram />
                   </Link>
                 </div>
+
                 {/* Language */}
                 <div className="flex gap-4 pt-4">
                   <Button variant={language === "en" ? "secondary" : "ghost"} onClick={() => setLanguage("en")}>
