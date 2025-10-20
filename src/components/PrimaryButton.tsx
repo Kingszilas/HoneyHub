@@ -7,7 +7,7 @@ interface PrimaryButtonProps {
   onClick?: () => void;
   children: React.ReactNode;
   variant?: "primary" | "secondary" | "ghost" | "destructive";
-   className?: string;
+  className?: string;
 }
 
 export const PrimaryButton: React.FC<PrimaryButtonProps> = ({
