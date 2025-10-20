@@ -1,12 +1,12 @@
 "use client";
-
 export const dynamic = "force-dynamic";
+export const fetchCache = "force-no-store";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabaseClient";
 
-export default function ConfirmPage() {
+function ConfirmInner() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const [status, setStatus] = useState("Ellenőrzés folyamatban...");
@@ -21,7 +21,7 @@ export default function ConfirmPage() {
     }
 
     const verify = async () => {
-      const { data, error } = await supabase.auth.verifyOtp({
+      const { error } = await supabase.auth.verifyOtp({
         type,
         token_hash,
       });
@@ -43,5 +43,13 @@ export default function ConfirmPage() {
       <h1 className="text-xl font-bold mb-4">Fiók megerősítése</h1>
       <p>{status}</p>
     </div>
+  );
+}
+
+export default function ConfirmPage() {
+  return (
+    <Suspense fallback={<div>Ellenőrzés folyamatban...</div>}>
+      <ConfirmInner />
+    </Suspense>
   );
 }
