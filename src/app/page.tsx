@@ -16,6 +16,7 @@ import { PrimaryButton } from '@/components/PrimaryButton';
 
 
 
+
 function SmoothInfiniteLoopText({ texts }: { texts: string[] }) {
   const itemHeight = 80; // px, h-20-hoz igazítva
   const totalHeight = texts.length * itemHeight;
@@ -74,12 +75,12 @@ export default function Home() {
     "A természet ajándéka mindennapra",
   ];
 
-  const [randomImg, setRandomImg] = React.useState(myImages[0]);
+  //const [randomImg, setRandomImg] = React.useState(myImages[0]);
 
-  React.useEffect(() => {
+  /*React.useEffect(() => {
     const img = myImages[Math.floor(Math.random() * myImages.length)];
     setRandomImg(img);
-  }, []);
+  }, []);*/
 
   const getProductLocale = (product: (typeof products)[0], field: 'name' | 'description' | 'price') => {
     const value = product[field];
@@ -102,7 +103,7 @@ export default function Home() {
       {/* Hero Section */}
       <section
         className="relative w-full h-[60vh] md:h-[80vh] flex items-center justify-center bg-center bg-cover bg-fixed"
-        style={{ backgroundImage: `url(${randomImg})` }}
+        style={{ backgroundImage: `url('/images/pexels-umsiedlungen-1035224.jpg')` }}
       >
         <div className="absolute inset-0 bg-black/50" />
         <div className="relative z-10 text-center text-white px-4">
