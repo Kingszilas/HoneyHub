@@ -15,16 +15,20 @@ function ConfirmInner() {
     const token_hash = searchParams.get("token_hash") || "";
     const type = (searchParams.get("type") as "email" | "recovery") || "email";
 
-    if (!token_hash) {
-      setStatus("Hiányzó token.");
-      return;
-    }
-
     const verify = async () => {
-      const { error } = await supabase.auth.verifyOtp({
-        type,
-        token_hash,
-      });
+      if (!token_hash) {
+        // ha nincs token, nézzük, hogy már be van-e lépve
+        const { data } = await supabase.auth.getSession();
+        if (data.session?.user) {
+          setStatus("E-mail már megerősítve! Üdv újra 🌸");
+          setTimeout(() => router.push("/"), 2500);
+        } else {
+          setStatus("Hiányzó token. Próbáld újra a regisztrációt.");
+        }
+        return;
+      }
+
+      const { error } = await supabase.auth.verifyOtp({ type, token_hash });
 
       if (error) {
         console.error("Supabase verify error:", error);
