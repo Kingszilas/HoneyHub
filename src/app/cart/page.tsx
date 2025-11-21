@@ -10,6 +10,7 @@ import { supabase } from "@/lib/supabaseClient";
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Trash2, ArrowLeft, Minus, Plus } from "lucide-react";
+import { fetchWithAuth } from "@/lib/fetchWithAuth";
 
 export default function CartPage() {
   const router = useRouter();
@@ -156,15 +157,20 @@ export default function CartPage() {
     };
 
     try {
-      const res = await fetch("/api/checkout", {
+      const res = await fetchWithAuth("/api/checkout", {
         method: "POST",
-        headers: { "Content-Type": "application/json" ,
-                   "Authorization": `Bearer ${session?.access_token}`
-                   },
-        body: JSON.stringify(payload),
+        json: payload,
+                //headers: { "Content-Type": "application/json" ,
+          //         "Authorization": `Bearer ${session?.access_token}`
+            //       },
+        //body: JSON.stringify(payload),
+
       });
 
-      if (!res.ok) throw new Error("Hiba történt a rendelés során");
+      //if (!res.ok) throw new Error("Hiba történt a rendelés során");
+      if (!res.success) {
+  throw new Error("Ismeretlen hiba");
+}
 
       toast({ title: "Siker!", description: "Rendelés elküldve és elmentve." });
       clearCart();

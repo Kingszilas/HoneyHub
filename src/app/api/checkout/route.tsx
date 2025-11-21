@@ -9,15 +9,15 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(req: Request) {
   try {
-  const supabase = await supabaseServerClient();
+const supabase = await supabaseServerClient();
 
-  const authHeader = req.headers.get("Authorization");
-  if (authHeader?.startsWith("Bearer ")) {
-    const token = authHeader.split(" ")[1];
-    // supabase.auth.setSession requires both access_token and refresh_token in the types;
-    // provide a refresh_token value (using the same token here to satisfy the type).
-    await supabase.auth.setSession({ access_token: token, refresh_token: token });
-  }
+const authHeader = req.headers.get("Authorization");
+if (!authHeader || !authHeader.startsWith("Bearer ")) {
+  return NextResponse.json({ error: "Bejelentkezés szükséges" }, { status: 401 });
+}
+const token = authHeader.split(" ")[1];
+await supabase.auth.setSession({ access_token: token, refresh_token: token });
+
 
     // --- Auth ellenőrzés ---
     const {
