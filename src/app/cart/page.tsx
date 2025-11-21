@@ -141,6 +141,8 @@ export default function CartPage() {
 
     setLoading(true);
 
+    const { data: { session } } = await supabase.auth.getSession();
+
     const payload = {
       items: items.map(item => ({
         id: item.id,
@@ -156,7 +158,9 @@ export default function CartPage() {
     try {
       const res = await fetch("/api/checkout", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json" ,
+                   "Authorization": `Bearer ${session?.access_token}`
+                   },
         body: JSON.stringify(payload),
       });
 

@@ -1,61 +1,67 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
-import { supabase } from "@/lib/supabaseClient";
+import { supabaseServerClient } from "@/lib/supabaseServerClient";
+import { createServerClient } from "@supabase/ssr";
+
+
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(req: Request) {
   try {
-    const { items, userId, shipping, billing } = await req.json();
+  const supabase = await supabaseServerClient();
 
-    if (!userId) {
+  const authHeader = req.headers.get("Authorization");
+  if (authHeader?.startsWith("Bearer ")) {
+    const token = authHeader.split(" ")[1];
+    // supabase.auth.setSession requires both access_token and refresh_token in the types;
+    // provide a refresh_token value (using the same token here to satisfy the type).
+    await supabase.auth.setSession({ access_token: token, refresh_token: token });
+  }
+
+    // --- Auth ellenőrzés ---
+    const {
+      data: { user },
+      error: userError
+    } = await supabase.auth.getUser();
+
+    if (userError || !user) {
       return NextResponse.json(
-        { error: "A rendeléshez bejelentkezés szükséges." },
+        { error: "Bejelentkezés szükséges a rendeléshez." },
         { status: 401 }
       );
     }
 
+    // --- Request body ---
+    const { items, shipping, billing } = await req.json();
+
     if (!items || !Array.isArray(items) || items.length === 0) {
-      return NextResponse.json(
-        { error: "Nincs termék a kosárban." },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: "Nincs termék a kosárban." }, { status: 400 });
     }
 
     if (!shipping || !shipping.name || !shipping.email || !shipping.phone) {
-      return NextResponse.json(
-        { error: "Hiányzó szállítási adatok." },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: "Hiányzó szállítási adatok." }, { status: 400 });
     }
 
     if (!billing || !billing.name || !billing.email || !billing.phone) {
-      return NextResponse.json(
-        { error: "Hiányzó számlázási adatok." },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: "Hiányzó számlázási adatok." }, { status: 400 });
     }
 
     // --- Összeg kiszámítása ---
-    const total = items.reduce(
-      (sum: number, item: any) => sum + item.price * item.quantity,
-      0
-    );
+    const total = items.reduce((sum: number, item: any) => sum + item.price * item.quantity, 0);
 
     // --- Új order létrehozása ---
     const { data: orderData, error: orderError } = await supabase
       .from("orders")
-      .insert([
-        {
-          user_id: userId,
-          total_amount: total,
-          status: "Beérkezett",
-          shipping: shipping,        // frontendből jövő szállítási adatok
-          billing_address: billing,  // frontendből jövő számlázási adatok
-          created_when: new Date(),
-          updated_when: new Date(),
-        },
-      ])
+      .insert([{
+        user_id: user.id,
+        total_amount: total,
+        status: "Beérkezett",
+        shipping,
+        billing_address: billing,
+        created_when: new Date(),
+        updated_when: new Date(),
+      }])
       .select("id")
       .single();
 
@@ -76,9 +82,7 @@ export async function POST(req: Request) {
       updated_when: new Date(),
     }));
 
-    const { error: orderItemsError } = await supabase
-      .from("order_items")
-      .insert(orderItemsPayload);
+    const { error: orderItemsError } = await supabase.from("order_items").insert(orderItemsPayload);
 
     if (orderItemsError) {
       console.error("Order items insert error:", orderItemsError);
@@ -86,17 +90,16 @@ export async function POST(req: Request) {
     }
 
     // --- Email küldés ---
-    const itemsHtml = items
-      .map(
-        (item: any) =>
-          `<tr>
-            <td style="padding:4px 8px;">${item.name}</td>
-            <td style="padding:4px 8px; text-align:center;">${item.quantity}</td>
-            <td style="padding:4px 8px; text-align:right;">${item.price.toLocaleString("hu-HU")} Ft</td>
-            <td style="padding:4px 8px; text-align:right;">${(item.price * item.quantity).toLocaleString("hu-HU")} Ft</td>
-          </tr>`
-      )
-      .join("");
+    const itemsHtml = items.map(
+      (item: any) => `
+        <tr>
+          <td style="padding:4px 8px;">${item.name}</td>
+          <td style="padding:4px 8px; text-align:center;">${item.quantity}</td>
+          <td style="padding:4px 8px; text-align:right;">${item.price.toLocaleString("hu-HU")} Ft</td>
+          <td style="padding:4px 8px; text-align:right;">${(item.price * item.quantity).toLocaleString("hu-HU")} Ft</td>
+        </tr>
+      `
+    ).join("");
 
     const htmlMessage = `
       <h2>Új rendelés érkezett!</h2>
@@ -146,9 +149,6 @@ export async function POST(req: Request) {
     return NextResponse.json({ success: true, orderId });
   } catch (err) {
     console.error("Checkout failed:", err);
-    return NextResponse.json(
-      { error: "Checkout failed", details: err },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: "Checkout failed", details: err }, { status: 500 });
   }
 }
